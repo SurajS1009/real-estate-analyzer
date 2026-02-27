@@ -11,7 +11,7 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
-from data_module import get_land_rate_data, get_all_states, get_cities_in_state, get_development_factors, get_location_insights, get_legal_risk_profile, get_area_risk_alerts
+from data_module import get_land_rate_data, get_all_states, get_cities_in_state, get_development_factors, get_location_insights, get_legal_risk_profile, get_area_risk_alerts, get_areas_in_city, get_area_details, get_all_area_details
 from prediction_engine import predict_future_rates, calculate_investment_roi, get_development_forecast, compare_locations
 
 # ─── Page Config ───
@@ -58,6 +58,17 @@ with st.sidebar:
     cities = get_cities_in_state(selected_state, df)
     selected_city = st.selectbox("🏙️ Select City / Town", cities)
     selected_location = f"{selected_city}, {selected_state}"
+
+    # ── Area / Locality Selector ──
+    available_areas = get_areas_in_city(selected_city)
+    selected_area = None
+    if available_areas:
+        area_options = ["🏙️ City Overview (All Areas)"] + available_areas
+        area_choice = st.selectbox("📌 Select Area / Locality", area_options)
+        if area_choice != "🏙️ City Overview (All Areas)":
+            selected_area = area_choice
+    else:
+        st.caption("ℹ️ Area details not yet available for this city.")
 
     st.divider()
     st.markdown("### 📊 Quick Stats")
@@ -112,6 +123,84 @@ with tab1:
         fig.update_traces(line=dict(color="#FF6B35", width=3), marker=dict(size=8))
         fig.update_layout(template="plotly_dark", height=420)
         st.plotly_chart(fig, use_container_width=True)
+
+        # ── Area / Locality Details ──
+        if selected_area:
+            area_detail = get_area_details(selected_city, selected_area, insights["current_rate"])
+            if area_detail:
+                st.divider()
+                st.subheader(f"📌 Area Spotlight – {selected_area}")
+                ar1, ar2, ar3, ar4 = st.columns(4)
+                with ar1:
+                    st.metric("💰 Est. Rate", f"₹{area_detail['estimated_rate']:,}/sqft")
+                with ar2:
+                    prem_delta = f"{'+' if area_detail['premium_pct'] >= 0 else ''}{area_detail['premium_pct']}%"
+                    st.metric("📊 vs City Avg", prem_delta)
+                with ar3:
+                    st.metric("🔗 Connectivity", f"{area_detail['connectivity_score']}/100")
+                with ar4:
+                    st.metric("📍 Distance", f"{area_detail['distance_from_center_km']} km")
+
+                ar_a, ar_b = st.columns(2)
+                with ar_a:
+                    st.markdown(f"**🏷️ Area Type:** {area_detail['type']}")
+                    st.markdown(f"**📮 Pin Code:** {area_detail['pin_code']}")
+                    st.markdown(f"**🚇 Metro Nearby:** {'✅ Yes' if area_detail['metro_nearby'] else '❌ No'}")
+                with ar_b:
+                    st.markdown(f"**👥 Popular For:** {area_detail['popular_for']}")
+                    st.markdown(f"**🏗️ Upcoming:** {area_detail['upcoming_development']}")
+                    st.markdown(f"**🗺️ Landmarks:** {', '.join(area_detail['landmarks'])}")
+
+        # ── All Areas Comparison (when no specific area selected) ──
+        if not selected_area and available_areas:
+            all_areas = get_all_area_details(selected_city, insights["current_rate"])
+            if all_areas:
+                st.divider()
+                st.subheader(f"🏘️ Localities in {selected_city} – Rate Comparison")
+
+                # Bar chart of area rates
+                area_names = [a["area_name"] for a in all_areas]
+                area_rates = [a["estimated_rate"] for a in all_areas]
+                area_types = [a["type"] for a in all_areas]
+                bar_colors = ["#FF6B35" if a["rate_multiplier"] >= 1.2 else "#00D4AA" if a["rate_multiplier"] <= 0.85 else "#4ECDC4" for a in all_areas]
+
+                fig_areas = go.Figure(go.Bar(
+                    x=area_names, y=area_rates,
+                    marker_color=bar_colors,
+                    text=[f"₹{r:,}" for r in area_rates],
+                    textposition="outside",
+                    hovertext=[f"{n}<br>Type: {t}<br>Rate: ₹{r:,}/sqft" for n, t, r in zip(area_names, area_types, area_rates)],
+                    hoverinfo="text",
+                ))
+                fig_areas.add_hline(y=insights["current_rate"], line_dash="dash", line_color="white",
+                                    annotation_text=f"City Avg: ₹{insights['current_rate']:,.0f}", annotation_position="top right")
+                fig_areas.update_layout(
+                    title=f"Estimated Rates by Locality – {selected_city}",
+                    yaxis_title="Rate (₹/sqft)",
+                    xaxis_title="Locality",
+                    template="plotly_dark", height=420,
+                    xaxis_tickangle=-45,
+                    margin=dict(b=120),
+                )
+                st.plotly_chart(fig_areas, use_container_width=True)
+
+                # Area details table
+                area_table = []
+                for a in all_areas:
+                    area_table.append({
+                        "Locality": a["area_name"],
+                        "Est. Rate (₹/sqft)": f"₹{a['estimated_rate']:,}",
+                        "vs City Avg": f"{'+' if a['premium_pct'] >= 0 else ''}{a['premium_pct']}%",
+                        "Type": a["type"],
+                        "Connectivity": f"{a['connectivity_score']}/100",
+                        "Metro": "✅" if a["metro_nearby"] else "❌",
+                        "Distance (km)": a["distance_from_center_km"],
+                        "Popular For": a["popular_for"],
+                    })
+                st.dataframe(pd.DataFrame(area_table), use_container_width=True, hide_index=True)
+
+                # Color legend
+                st.caption("🟠 Premium area (20%+ above avg) | 🟢 Budget area (15%+ below avg) | 🔵 Mid-segment")
 
         # Development Forecast
         forecast = get_development_forecast(df, selected_location, dev_factors)

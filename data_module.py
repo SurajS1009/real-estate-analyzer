@@ -292,6 +292,291 @@ INDIA_LOCATIONS = {
     "Agatti, Lakshadweep": (2000, 7.5, 10.8565, 72.1760, "Tourism Island", 35),
 }
 
+# ═══════════════════════════════════════════════════════
+# AREA / LOCALITY DATA
+# ═══════════════════════════════════════════════════════
+# Each city maps to a dict of area-name → info.
+# rate_multiplier applies to the city's base rate to get area rate.
+#   1.0 = city average, 1.3 = 30% premium, 0.75 = 25% cheaper.
+
+CITY_AREAS = {
+    # ────── BENGALURU ──────
+    "Bengaluru": {
+        "Koramangala": {"rate_multiplier": 1.40, "type": "Premium Residential", "pin": "560034", "landmarks": ["Forum Mall", "Jyoti Nivas College"], "connectivity": 88, "popular_for": "Startups, IT professionals, nightlife", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro Yellow Line extension"},
+        "Indiranagar": {"rate_multiplier": 1.50, "type": "Premium Residential", "pin": "560038", "landmarks": ["100 Ft Road", "CMH Road"], "connectivity": 90, "popular_for": "Upscale living, dining, pubs", "distance_km": 6, "metro_nearby": True, "upcoming": "Metro Purple Line operational"},
+        "Whitefield": {"rate_multiplier": 1.15, "type": "IT Corridor", "pin": "560066", "landmarks": ["ITPL", "Phoenix Marketcity"], "connectivity": 72, "popular_for": "IT employees, gated communities", "distance_km": 18, "metro_nearby": True, "upcoming": "Metro Purple Line extension to Whitefield"},
+        "Electronic City": {"rate_multiplier": 0.85, "type": "IT SEZ", "pin": "560100", "landmarks": ["Infosys Campus", "Wipro Campus"], "connectivity": 68, "popular_for": "IT professionals, affordable housing", "distance_km": 22, "metro_nearby": False, "upcoming": "Elevated expressway, metro phase 3"},
+        "HSR Layout": {"rate_multiplier": 1.30, "type": "Startup Hub", "pin": "560102", "landmarks": ["HSR BDA Complex", "Agara Lake"], "connectivity": 82, "popular_for": "Startups, young professionals", "distance_km": 12, "metro_nearby": False, "upcoming": "Metro Yellow Line extension"},
+        "Jayanagar": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "560041", "landmarks": ["Jayanagar 4th Block", "Cool Joint"], "connectivity": 88, "popular_for": "Families, established neighbourhood", "distance_km": 7, "metro_nearby": True, "upcoming": "Heritage area conservation"},
+        "Marathahalli": {"rate_multiplier": 1.00, "type": "IT Corridor", "pin": "560037", "landmarks": ["Marathahalli Bridge", "Innovative Multiplex"], "connectivity": 70, "popular_for": "IT employees, rental market", "distance_km": 15, "metro_nearby": False, "upcoming": "ORR widening, metro extension"},
+        "Sarjapur Road": {"rate_multiplier": 1.10, "type": "Growth Corridor", "pin": "560035", "landmarks": ["Wipro Sarjapur Campus", "Total Mall"], "connectivity": 65, "popular_for": "New apartments, IT families", "distance_km": 18, "metro_nearby": False, "upcoming": "Metro phase 3, road widening"},
+        "Hebbal": {"rate_multiplier": 1.20, "type": "Airport Corridor", "pin": "560024", "landmarks": ["Hebbal Flyover", "Manyata Tech Park"], "connectivity": 80, "popular_for": "Airport access, corporate campuses", "distance_km": 10, "metro_nearby": False, "upcoming": "Airport metro express line"},
+        "Malleshwaram": {"rate_multiplier": 1.30, "type": "Heritage Residential", "pin": "560003", "landmarks": ["Mantri Mall", "Sankey Tank"], "connectivity": 85, "popular_for": "Families, heritage charm, temples", "distance_km": 5, "metro_nearby": True, "upcoming": "Heritage zone preservation"},
+        "Bannerghatta Road": {"rate_multiplier": 0.95, "type": "Emerging Residential", "pin": "560076", "landmarks": ["Bannerghatta National Park", "Meenakshi Mall"], "connectivity": 65, "popular_for": "Affordable, nature proximity", "distance_km": 16, "metro_nearby": False, "upcoming": "Metro Green Line extension"},
+        "Yelahanka": {"rate_multiplier": 0.80, "type": "Airport Zone", "pin": "560064", "landmarks": ["IAF Base", "Yelahanka Lake"], "connectivity": 72, "popular_for": "Affordable, airport proximity", "distance_km": 14, "metro_nearby": False, "upcoming": "Airport metro, new townships"},
+    },
+    # ────── MUMBAI ──────
+    "Mumbai": {
+        "Bandra West": {"rate_multiplier": 1.60, "type": "Premium Residential", "pin": "400050", "landmarks": ["Bandra-Worli Sea Link", "Carter Road"], "connectivity": 95, "popular_for": "Celebrities, luxury living", "distance_km": 15, "metro_nearby": True, "upcoming": "Metro Line 3 (Aqua Line)"},
+        "Andheri": {"rate_multiplier": 1.10, "type": "Commercial/Residential", "pin": "400069", "landmarks": ["MIDC", "Lokhandwala Complex"], "connectivity": 90, "popular_for": "Working professionals, studios", "distance_km": 20, "metro_nearby": True, "upcoming": "Metro Line 7 extension"},
+        "Powai": {"rate_multiplier": 1.30, "type": "IT/Residential", "pin": "400076", "landmarks": ["IIT Bombay", "Hiranandani Gardens"], "connectivity": 78, "popular_for": "IT professionals, lakeside living", "distance_km": 22, "metro_nearby": False, "upcoming": "Metro Line 6 (Pink Line)"},
+        "Worli": {"rate_multiplier": 1.55, "type": "Premium Commercial", "pin": "400018", "landmarks": ["Worli Sea Face", "Nehru Centre"], "connectivity": 88, "popular_for": "High-net-worth, sea views", "distance_km": 12, "metro_nearby": False, "upcoming": "Coastal Road completion"},
+        "Lower Parel": {"rate_multiplier": 1.45, "type": "Business District", "pin": "400013", "landmarks": ["Phoenix Palladium", "Kamala Mills"], "connectivity": 92, "popular_for": "Corporate offices, luxury retail", "distance_km": 10, "metro_nearby": True, "upcoming": "Metro Line 3"},
+        "Goregaon": {"rate_multiplier": 0.95, "type": "Film/Commercial Hub", "pin": "400063", "landmarks": ["Film City", "Oberoi Mall"], "connectivity": 82, "popular_for": "Entertainment industry, mid-segment", "distance_km": 25, "metro_nearby": True, "upcoming": "Metro Line 2A"},
+        "Colaba": {"rate_multiplier": 1.70, "type": "Heritage Premium", "pin": "400005", "landmarks": ["Gateway of India", "Taj Hotel"], "connectivity": 85, "popular_for": "Heritage, tourism, luxury", "distance_km": 2, "metro_nearby": False, "upcoming": "Metro Line 3 terminus"},
+        "BKC (Bandra Kurla)": {"rate_multiplier": 1.65, "type": "Financial District", "pin": "400051", "landmarks": ["MMRDA Grounds", "Jio World Centre"], "connectivity": 88, "popular_for": "Corporate HQs, banks, consulates", "distance_km": 18, "metro_nearby": True, "upcoming": "Metro Lines 2B, 3 interchange"},
+        "Dadar": {"rate_multiplier": 1.15, "type": "Central Hub", "pin": "400014", "landmarks": ["Shivaji Park", "Dadar Station"], "connectivity": 95, "popular_for": "Transit hub, markets, families", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro interchange station"},
+        "Malad": {"rate_multiplier": 0.85, "type": "Residential", "pin": "400064", "landmarks": ["Inorbit Mall", "Mindspace"], "connectivity": 80, "popular_for": "Mid-segment families, IT offices", "distance_km": 28, "metro_nearby": True, "upcoming": "Metro Line 2A, 7"},
+    },
+    # ────── DELHI ──────
+    "New Delhi": {
+        "Connaught Place": {"rate_multiplier": 1.80, "type": "Premium Commercial", "pin": "110001", "landmarks": ["Rajiv Chowk", "Janpath"], "connectivity": 98, "popular_for": "Retail, corporate, heritage", "distance_km": 0, "metro_nearby": True, "upcoming": "Central Vista redevelopment"},
+        "Dwarka": {"rate_multiplier": 0.80, "type": "Planned Residential", "pin": "110075", "landmarks": ["Dwarka Sector 21 Metro", "DDA Complex"], "connectivity": 82, "popular_for": "Affordable urban, families", "distance_km": 20, "metro_nearby": True, "upcoming": "Dwarka Expressway, IGI T4"},
+        "Saket": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "110017", "landmarks": ["Select Citywalk", "Saket District Court"], "connectivity": 90, "popular_for": "Shopping, upscale families", "distance_km": 12, "metro_nearby": True, "upcoming": "Metro Phase IV"},
+        "Greater Kailash": {"rate_multiplier": 1.50, "type": "Luxury Residential", "pin": "110048", "landmarks": ["GK M-Block Market", "Savitri Cinema"], "connectivity": 88, "popular_for": "HNI families, designer stores", "distance_km": 10, "metro_nearby": True, "upcoming": "Heritage walk development"},
+        "Vasant Kunj": {"rate_multiplier": 1.15, "type": "Premium Residential", "pin": "110070", "landmarks": ["Ambience Mall", "DLF Promenade"], "connectivity": 78, "popular_for": "Large apartments, diplomats", "distance_km": 15, "metro_nearby": True, "upcoming": "Metro Magenta Line extension"},
+        "Rohini": {"rate_multiplier": 0.85, "type": "Planned Residential", "pin": "110085", "landmarks": ["Adventure Island", "Rohini Court"], "connectivity": 80, "popular_for": "North Delhi families, affordable", "distance_km": 18, "metro_nearby": True, "upcoming": "Metro extension sectors"},
+        "Lajpat Nagar": {"rate_multiplier": 1.20, "type": "Commercial Market", "pin": "110024", "landmarks": ["Central Market", "Defence Colony"], "connectivity": 92, "popular_for": "Shopping, food, central location", "distance_km": 8, "metro_nearby": True, "upcoming": "Market modernization"},
+        "Pitampura": {"rate_multiplier": 0.95, "type": "Residential", "pin": "110034", "landmarks": ["Netaji Subhash Place", "Wazirpur Ind."], "connectivity": 85, "popular_for": "North Delhi families, mid-segment", "distance_km": 14, "metro_nearby": True, "upcoming": "Civic center development"},
+    },
+    # ────── CHENNAI ──────
+    "Chennai": {
+        "T Nagar": {"rate_multiplier": 1.35, "type": "Premium Commercial", "pin": "600017", "landmarks": ["Ranganathan Street", "Pondy Bazaar"], "connectivity": 92, "popular_for": "Shopping, gold, silk", "distance_km": 6, "metro_nearby": True, "upcoming": "Metro Phase II"},
+        "Adyar": {"rate_multiplier": 1.30, "type": "Premium Residential", "pin": "600020", "landmarks": ["Adyar Estuary", "IIT Madras"], "connectivity": 85, "popular_for": "Upscale families, education zone", "distance_km": 10, "metro_nearby": True, "upcoming": "Coastal Road project"},
+        "Anna Nagar": {"rate_multiplier": 1.25, "type": "Premium Residential", "pin": "600040", "landmarks": ["Anna Nagar Tower", "VR Mall"], "connectivity": 88, "popular_for": "Families, hospitals, schools", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro Blue Line"},
+        "Velachery": {"rate_multiplier": 0.90, "type": "IT Residential", "pin": "600042", "landmarks": ["Phoenix Marketcity", "Grand Mall"], "connectivity": 80, "popular_for": "IT employees, mid-segment", "distance_km": 14, "metro_nearby": True, "upcoming": "Metro extension to airport"},
+        "Sholinganallur": {"rate_multiplier": 0.85, "type": "IT Corridor", "pin": "600119", "landmarks": ["SIPCOT IT Park", "OMR Junction"], "connectivity": 72, "popular_for": "IT professionals, new apartments", "distance_km": 20, "metro_nearby": False, "upcoming": "Metro Phase 2 OMR corridor"},
+        "Tambaram": {"rate_multiplier": 0.70, "type": "Affordable Residential", "pin": "600045", "landmarks": ["Tambaram Station", "Mudichur Road"], "connectivity": 75, "popular_for": "Budget housing, rail connectivity", "distance_km": 25, "metro_nearby": True, "upcoming": "Metro airport extension"},
+        "Guindy": {"rate_multiplier": 1.10, "type": "Industrial/IT Hub", "pin": "600032", "landmarks": ["Guindy National Park", "DLF IT Park"], "connectivity": 88, "popular_for": "IT companies, central location", "distance_km": 12, "metro_nearby": True, "upcoming": "Metro Phase II interchange"},
+        "Nungambakkam": {"rate_multiplier": 1.40, "type": "Premium Residential", "pin": "600034", "landmarks": ["Sterling Road", "Chetpet Lake"], "connectivity": 90, "popular_for": "Upscale living, medical hub", "distance_km": 5, "metro_nearby": True, "upcoming": "Premium redevelopment zone"},
+        "Porur": {"rate_multiplier": 0.80, "type": "Growth Corridor", "pin": "600116", "landmarks": ["Porur Lake", "Ramachandra Hospital"], "connectivity": 72, "popular_for": "Hospital proximity, affordable", "distance_km": 18, "metro_nearby": False, "upcoming": "Metro extension, ORR"},
+    },
+    # ────── HYDERABAD ──────
+    "Hyderabad": {
+        "HITEC City": {"rate_multiplier": 1.35, "type": "IT Hub", "pin": "500081", "landmarks": ["Cyber Towers", "Inorbit Mall"], "connectivity": 85, "popular_for": "IT professionals, corporate offices", "distance_km": 15, "metro_nearby": True, "upcoming": "Metro extension, IT expansion"},
+        "Gachibowli": {"rate_multiplier": 1.30, "type": "IT/Financial District", "pin": "500032", "landmarks": ["Financial District", "ISB Campus"], "connectivity": 82, "popular_for": "IT companies, consulting firms", "distance_km": 18, "metro_nearby": True, "upcoming": "Pharma City proximity, PVR"},
+        "Jubilee Hills": {"rate_multiplier": 1.60, "type": "Luxury Residential", "pin": "500033", "landmarks": ["Jubilee Hills Check Post", "KBR Park"], "connectivity": 88, "popular_for": "HNI, film celebrities, villas", "distance_km": 10, "metro_nearby": True, "upcoming": "Heritage conservation zone"},
+        "Banjara Hills": {"rate_multiplier": 1.55, "type": "Premium Commercial", "pin": "500034", "landmarks": ["Road No 36", "GVK One Mall"], "connectivity": 90, "popular_for": "Luxury retail, restaurants, consulates", "distance_km": 8, "metro_nearby": True, "upcoming": "Premium commercial hub expansion"},
+        "Kukatpally": {"rate_multiplier": 0.85, "type": "Residential Hub", "pin": "500072", "landmarks": ["KPHB Colony", "Forum Sujana Mall"], "connectivity": 80, "popular_for": "Mid-segment families, KPHB", "distance_km": 14, "metro_nearby": True, "upcoming": "Metro extension, IT growth"},
+        "Kondapur": {"rate_multiplier": 1.10, "type": "IT Residential", "pin": "500084", "landmarks": ["Botanical Garden", "Kondapur Bus Stand"], "connectivity": 78, "popular_for": "IT employees, new gated communities", "distance_km": 16, "metro_nearby": True, "upcoming": "Metro Phase 2, road widening"},
+        "Shamshabad": {"rate_multiplier": 0.75, "type": "Airport Zone", "pin": "501218", "landmarks": ["RGIA Airport", "Aerospace Park"], "connectivity": 65, "popular_for": "Investment, airport proximity", "distance_km": 28, "metro_nearby": False, "upcoming": "Airport metro, pharma city"},
+        "LB Nagar": {"rate_multiplier": 0.80, "type": "Affordable Residential", "pin": "500074", "landmarks": ["LB Nagar Metro", "Kothapet"], "connectivity": 78, "popular_for": "Affordable, East Hyderabad", "distance_km": 16, "metro_nearby": True, "upcoming": "ORR junction development"},
+        "Miyapur": {"rate_multiplier": 0.80, "type": "Growth Corridor", "pin": "500049", "landmarks": ["Miyapur Metro Terminal", "Allwyn Colony"], "connectivity": 75, "popular_for": "Affordable, metro access", "distance_km": 20, "metro_nearby": True, "upcoming": "Metro depot zone, IT spillover"},
+    },
+    # ────── PUNE ──────
+    "Pune": {
+        "Koregaon Park": {"rate_multiplier": 1.50, "type": "Premium Residential", "pin": "411001", "landmarks": ["Osho Ashram", "ABC Farms"], "connectivity": 85, "popular_for": "Expats, nightlife, premium living", "distance_km": 5, "metro_nearby": False, "upcoming": "Metro Line 2, riverfront"},
+        "Hinjewadi": {"rate_multiplier": 1.10, "type": "IT Park", "pin": "411057", "landmarks": ["Rajiv Gandhi IT Park", "Xion Mall"], "connectivity": 68, "popular_for": "IT employees, tech parks", "distance_km": 20, "metro_nearby": False, "upcoming": "Metro Line 3 to Hinjewadi"},
+        "Baner": {"rate_multiplier": 1.25, "type": "Premium Residential", "pin": "411045", "landmarks": ["Baner Hill", "Orchid School"], "connectivity": 78, "popular_for": "IT professionals, restaurants", "distance_km": 12, "metro_nearby": False, "upcoming": "Metro Phase 2, Balewadi stadium area"},
+        "Wakad": {"rate_multiplier": 1.05, "type": "IT Residential", "pin": "411057", "landmarks": ["Hinjewadi Junction", "Wakad Bridge"], "connectivity": 72, "popular_for": "Affordable IT housing", "distance_km": 16, "metro_nearby": False, "upcoming": "Metro Line 3 extension"},
+        "Kothrud": {"rate_multiplier": 1.30, "type": "Premium Residential", "pin": "411038", "landmarks": ["Chandani Chowk", "Karve Nagar"], "connectivity": 85, "popular_for": "Families, education zone", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro Purple Line"},
+        "Viman Nagar": {"rate_multiplier": 1.20, "type": "Airport Residential", "pin": "411014", "landmarks": ["Phoenix Marketcity", "Airport Road"], "connectivity": 82, "popular_for": "Airport proximity, young professionals", "distance_km": 10, "metro_nearby": False, "upcoming": "Metro Phase 2"},
+        "Hadapsar": {"rate_multiplier": 0.90, "type": "IT/Residential", "pin": "411028", "landmarks": ["Magarpatta City", "Amanora Mall"], "connectivity": 75, "popular_for": "IT employees, Magarpatta township", "distance_km": 12, "metro_nearby": True, "upcoming": "Metro extension, ring road"},
+        "Aundh": {"rate_multiplier": 1.20, "type": "Premium Residential", "pin": "411007", "landmarks": ["Aundh ITI Road", "Bremen Chowk"], "connectivity": 82, "popular_for": "Families, proximity to uni & IT", "distance_km": 10, "metro_nearby": False, "upcoming": "Metro Phase 2"},
+        "Kalyani Nagar": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "411006", "landmarks": ["Aga Khan Palace", "Kalyani Nagar Road"], "connectivity": 80, "popular_for": "Upscale apartments, river proximity", "distance_km": 7, "metro_nearby": False, "upcoming": "Riverfront development project"},
+    },
+    # ────── AHMEDABAD ──────
+    "Ahmedabad": {
+        "SG Highway": {"rate_multiplier": 1.30, "type": "Premium Commercial", "pin": "380054", "landmarks": ["Iscon Mega Mall", "Sindhu Bhavan Road"], "connectivity": 85, "popular_for": "Corporate offices, shopping", "distance_km": 10, "metro_nearby": True, "upcoming": "Metro Phase 2"},
+        "Prahlad Nagar": {"rate_multiplier": 1.25, "type": "Premium Residential", "pin": "380015", "landmarks": ["Prahlad Nagar Garden", "Corporate Road"], "connectivity": 82, "popular_for": "Premium apartments, families", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro extension"},
+        "Bodakdev": {"rate_multiplier": 1.20, "type": "Upscale Residential", "pin": "380054", "landmarks": ["Judges Bungalow Road", "Vastrapur Lake"], "connectivity": 80, "popular_for": "Upscale living, judges colony", "distance_km": 7, "metro_nearby": True, "upcoming": "Premium zone expansion"},
+        "Navrangpura": {"rate_multiplier": 1.15, "type": "Central Residential", "pin": "380009", "landmarks": ["CG Road", "HL College"], "connectivity": 90, "popular_for": "Students, central location", "distance_km": 3, "metro_nearby": True, "upcoming": "Heritage corridor"},
+        "Bopal": {"rate_multiplier": 0.85, "type": "Emerging Residential", "pin": "380058", "landmarks": ["Bopal Lake", "South Bopal"], "connectivity": 68, "popular_for": "Affordable new apartments, families", "distance_km": 14, "metro_nearby": False, "upcoming": "BRTS extension, ring road"},
+        "Satellite": {"rate_multiplier": 1.25, "type": "Premium Residential", "pin": "380015", "landmarks": ["Satellite Road", "Jodhpur Cross Roads"], "connectivity": 85, "popular_for": "Established premium, restaurants", "distance_km": 6, "metro_nearby": True, "upcoming": "Metro Phase 1"},
+        "Maninagar": {"rate_multiplier": 0.80, "type": "Commercial Hub", "pin": "380008", "landmarks": ["Maninagar Station", "APMC Market"], "connectivity": 82, "popular_for": "Markets, budget housing, rail access", "distance_km": 5, "metro_nearby": True, "upcoming": "Railway station upgrade"},
+    },
+    # ────── KOLKATA ──────
+    "Kolkata": {
+        "Salt Lake (Sector V)": {"rate_multiplier": 1.25, "type": "IT Hub", "pin": "700091", "landmarks": ["Sector V IT Hub", "City Centre 2"], "connectivity": 82, "popular_for": "IT professionals, planned township", "distance_km": 10, "metro_nearby": True, "upcoming": "East-West Metro extension"},
+        "New Town (Rajarhat)": {"rate_multiplier": 1.10, "type": "Smart City", "pin": "700156", "landmarks": ["Eco Park", "Biswa Bangla Gate"], "connectivity": 75, "popular_for": "New apartments, IT parks", "distance_km": 15, "metro_nearby": True, "upcoming": "Airport metro, NKDA projects"},
+        "Park Street": {"rate_multiplier": 1.55, "type": "Premium Commercial", "pin": "700016", "landmarks": ["Park Street", "Indian Museum"], "connectivity": 95, "popular_for": "Heritage, restaurants, nightlife", "distance_km": 2, "metro_nearby": True, "upcoming": "Heritage conservation"},
+        "Ballygunge": {"rate_multiplier": 1.40, "type": "Premium Residential", "pin": "700019", "landmarks": ["Ballygunge Place", "Quest Mall"], "connectivity": 88, "popular_for": "Old money, established families", "distance_km": 5, "metro_nearby": True, "upcoming": "Metro Phase 2"},
+        "Alipore": {"rate_multiplier": 1.50, "type": "Luxury Residential", "pin": "700027", "landmarks": ["Alipore Zoo", "National Library"], "connectivity": 85, "popular_for": "Government officials, luxury", "distance_km": 6, "metro_nearby": True, "upcoming": "Joka-BBD Bagh Metro"},
+        "EM Bypass": {"rate_multiplier": 0.95, "type": "Growth Corridor", "pin": "700107", "landmarks": ["Science City", "Acropolis Mall"], "connectivity": 78, "popular_for": "Mid-segment residents, new towers", "distance_km": 12, "metro_nearby": False, "upcoming": "Metro East-West extension"},
+        "Howrah": {"rate_multiplier": 0.70, "type": "Industrial/Transit", "pin": "711101", "landmarks": ["Howrah Bridge", "Howrah Station"], "connectivity": 80, "popular_for": "Budget housing, transit hub", "distance_km": 8, "metro_nearby": True, "upcoming": "East-West Metro, riverfront"},
+        "Tollygunge": {"rate_multiplier": 1.00, "type": "Cultural Hub", "pin": "700033", "landmarks": ["Tollygunge Club", "Rabindra Sarobar"], "connectivity": 82, "popular_for": "Film industry, lake views", "distance_km": 8, "metro_nearby": True, "upcoming": "Joka Metro extension"},
+    },
+    # ────── JAIPUR ──────
+    "Jaipur": {
+        "C-Scheme": {"rate_multiplier": 1.40, "type": "Premium Commercial", "pin": "302001", "landmarks": ["Ashok Nagar", "Prithviraj Road"], "connectivity": 90, "popular_for": "Premium offices, shopping", "distance_km": 3, "metro_nearby": True, "upcoming": "Metro Phase 2"},
+        "Malviya Nagar": {"rate_multiplier": 1.20, "type": "Premium Residential", "pin": "302017", "landmarks": ["WTP", "Malviya Nagar Station"], "connectivity": 82, "popular_for": "Established families, hospitals", "distance_km": 6, "metro_nearby": True, "upcoming": "Metro Orange Line"},
+        "Vaishali Nagar": {"rate_multiplier": 1.05, "type": "Residential Hub", "pin": "302021", "landmarks": ["Vaishali Circle", "Gaurav Tower"], "connectivity": 78, "popular_for": "Families, mid-segment", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro Phase 1B"},
+        "Mansarovar": {"rate_multiplier": 0.90, "type": "Planned Township", "pin": "302020", "landmarks": ["Mansarovar Metro", "Birla Temple"], "connectivity": 80, "popular_for": "Affordable, large township", "distance_km": 10, "metro_nearby": True, "upcoming": "Metro station operational"},
+        "Jagatpura": {"rate_multiplier": 0.80, "type": "IT Corridor", "pin": "302017", "landmarks": ["Sitapura RIICO", "Jagatpura Flyover"], "connectivity": 65, "popular_for": "IT employees, affordable", "distance_km": 12, "metro_nearby": False, "upcoming": "IT Park expansion, ring road"},
+        "Tonk Road": {"rate_multiplier": 1.05, "type": "Growth Corridor", "pin": "302015", "landmarks": ["Tonk Phatak", "Jaipur Airport Road"], "connectivity": 75, "popular_for": "Airport access, new projects", "distance_km": 10, "metro_nearby": False, "upcoming": "Airport expansion, new flyover"},
+    },
+    # ────── LUCKNOW ──────
+    "Lucknow": {
+        "Gomti Nagar": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "226010", "landmarks": ["Lulu Mall", "Riverside Walk"], "connectivity": 85, "popular_for": "Premium living, riverfront", "distance_km": 8, "metro_nearby": True, "upcoming": "Gomti Nagar Extension, Metro extension"},
+        "Hazratganj": {"rate_multiplier": 1.40, "type": "Heritage Commercial", "pin": "226001", "landmarks": ["Hazratganj Road", "GPO"], "connectivity": 92, "popular_for": "Heritage shopping, central", "distance_km": 2, "metro_nearby": True, "upcoming": "Heritage conservation"},
+        "Aliganj": {"rate_multiplier": 0.95, "type": "Residential", "pin": "226020", "landmarks": ["Aliganj Crossing", "Sector Market"], "connectivity": 78, "popular_for": "Mid-segment families", "distance_km": 6, "metro_nearby": True, "upcoming": "Metro Purple Line"},
+        "Indira Nagar": {"rate_multiplier": 1.10, "type": "Premium Residential", "pin": "226016", "landmarks": ["Munshi Pulia", "Eldeco Greens"], "connectivity": 80, "popular_for": "Established residential, parks", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro Red Line"},
+        "Sushant Golf City": {"rate_multiplier": 1.20, "type": "Premium Township", "pin": "226030", "landmarks": ["Ansal Golf City", "Shaheed Path"], "connectivity": 65, "popular_for": "Premium villas, gated communities", "distance_km": 14, "metro_nearby": False, "upcoming": "New expressway, township expansion"},
+    },
+    # ────── GURUGRAM ──────
+    "Gurugram": {
+        "Cyber City (DLF)": {"rate_multiplier": 1.50, "type": "IT/Business Hub", "pin": "122002", "landmarks": ["DLF Cyber Hub", "Ambience Mall"], "connectivity": 88, "popular_for": "MNCs, corporate HQs, dining", "distance_km": 8, "metro_nearby": True, "upcoming": "Metro extension, new towers"},
+        "Golf Course Road": {"rate_multiplier": 1.60, "type": "Luxury Corridor", "pin": "122002", "landmarks": ["DLF Golf Club", "Central Park"], "connectivity": 80, "popular_for": "Ultra-luxury, CEOs, HNI", "distance_km": 10, "metro_nearby": False, "upcoming": "Southern Peripheral Road connection"},
+        "Sohna Road": {"rate_multiplier": 0.85, "type": "Growth Corridor", "pin": "122018", "landmarks": ["Subhash Chowk", "South City 2"], "connectivity": 70, "popular_for": "Affordable new apartments", "distance_km": 15, "metro_nearby": False, "upcoming": "Metro Blue Line, SPR junction"},
+        "MG Road": {"rate_multiplier": 1.10, "type": "Commercial/Transit", "pin": "122001", "landmarks": ["MG Road Metro", "Sahara Mall"], "connectivity": 92, "popular_for": "Restaurants, shopping, transit", "distance_km": 5, "metro_nearby": True, "upcoming": "Rapid Metro upgrade"},
+        "Dwarka Expressway": {"rate_multiplier": 0.90, "type": "Expressway Corridor", "pin": "122006", "landmarks": ["SPR Junction", "Global City"], "connectivity": 65, "popular_for": "New townships, investment", "distance_km": 20, "metro_nearby": False, "upcoming": "Expressway completion, new airport"},
+        "Sector 82-89": {"rate_multiplier": 0.75, "type": "New Sectors", "pin": "122004", "landmarks": ["NH-48 Corridor", "New Gurugram"], "connectivity": 60, "popular_for": "Budget investment, future growth", "distance_km": 22, "metro_nearby": False, "upcoming": "New sectors development, metro Phase 3"},
+    },
+    # ────── NOIDA ──────
+    "Noida": {
+        "Sector 62": {"rate_multiplier": 1.15, "type": "IT Hub", "pin": "201309", "landmarks": ["Sector 62 IT Hub", "Electronic City"], "connectivity": 82, "popular_for": "IT offices, mid-segment", "distance_km": 10, "metro_nearby": True, "upcoming": "Metro Blue Line extension"},
+        "Sector 150": {"rate_multiplier": 1.25, "type": "Premium Residential", "pin": "201310", "landmarks": ["Noida Expressway", "Sports City"], "connectivity": 65, "popular_for": "New premium projects, sports infra", "distance_km": 18, "metro_nearby": False, "upcoming": "Noida International Airport proximity"},
+        "Sector 44 (City Centre)": {"rate_multiplier": 1.30, "type": "Central Commercial", "pin": "201303", "landmarks": ["Noida City Centre Metro", "GIP Mall"], "connectivity": 90, "popular_for": "Commercial hub, metro access", "distance_km": 5, "metro_nearby": True, "upcoming": "Aqua Line interchange"},
+        "Greater Noida (West)": {"rate_multiplier": 0.65, "type": "Affordable Hub", "pin": "201318", "landmarks": ["Gaur City", "Pari Chowk"], "connectivity": 60, "popular_for": "Budget apartments, new buyers", "distance_km": 25, "metro_nearby": False, "upcoming": "Noida International Airport, metro"},
+        "Sector 137": {"rate_multiplier": 1.00, "type": "IT Residential", "pin": "201305", "landmarks": ["Expressway", "Jaypee Greens"], "connectivity": 70, "popular_for": "IT professionals, expressway access", "distance_km": 15, "metro_nearby": False, "upcoming": "Metro Aqua Line, FNG Expressway"},
+    },
+    # ────── PATNA ──────
+    "Patna": {
+        "Boring Road": {"rate_multiplier": 1.35, "type": "Premium Commercial", "pin": "800001", "landmarks": ["Boring Road Crossing", "Maurya Lok"], "connectivity": 85, "popular_for": "Coaching institutes, shopping", "distance_km": 3, "metro_nearby": False, "upcoming": "Patna Metro construction"},
+        "Kankarbagh": {"rate_multiplier": 1.00, "type": "Residential Hub", "pin": "800020", "landmarks": ["Kankarbagh Main Road"], "connectivity": 78, "popular_for": "Established families, markets", "distance_km": 5, "metro_nearby": False, "upcoming": "Metro Phase 1"},
+        "Bailey Road": {"rate_multiplier": 1.20, "type": "Growth Corridor", "pin": "800014", "landmarks": ["Patna Zoo", "Eco Park"], "connectivity": 75, "popular_for": "New apartments, institutions", "distance_km": 8, "metro_nearby": False, "upcoming": "Road widening, flyover"},
+        "Rajendra Nagar": {"rate_multiplier": 0.90, "type": "Residential", "pin": "800016", "landmarks": ["Rajendra Nagar Terminal"], "connectivity": 80, "popular_for": "Railway proximity, mid-segment", "distance_km": 4, "metro_nearby": False, "upcoming": "Station redevelopment"},
+        "Danapur": {"rate_multiplier": 0.70, "type": "Cantonment Area", "pin": "801503", "landmarks": ["Danapur Cantt", "Khagaul"], "connectivity": 68, "popular_for": "Defence, affordable, outskirts", "distance_km": 12, "metro_nearby": False, "upcoming": "Bypass road, new townships"},
+    },
+    # ────── SURAT ──────
+    "Surat": {
+        "Vesu": {"rate_multiplier": 1.30, "type": "Premium Residential", "pin": "395007", "landmarks": ["Vesu Lake", "VR Surat Mall"], "connectivity": 80, "popular_for": "Premium living, lake views", "distance_km": 8, "metro_nearby": False, "upcoming": "Surat Metro Phase 1"},
+        "Adajan": {"rate_multiplier": 1.15, "type": "Residential Hub", "pin": "395009", "landmarks": ["Adajan Gam", "Jolly Bungalows"], "connectivity": 78, "popular_for": "Diamond merchants, families", "distance_km": 5, "metro_nearby": False, "upcoming": "Metro Green Line"},
+        "Piplod": {"rate_multiplier": 1.10, "type": "Commercial Hub", "pin": "395007", "landmarks": ["Piplod Circle", "Rahul Raj Mall"], "connectivity": 75, "popular_for": "Diamond & textile offices", "distance_km": 6, "metro_nearby": False, "upcoming": "Metro station"},
+        "Dumas Road": {"rate_multiplier": 0.90, "type": "Beach Corridor", "pin": "395007", "landmarks": ["Dumas Beach", "Hajira Road"], "connectivity": 60, "popular_for": "Weekend homes, investment", "distance_km": 15, "metro_nearby": False, "upcoming": "Coastal tourism development"},
+        "Varachha": {"rate_multiplier": 0.80, "type": "Textile Hub", "pin": "395006", "landmarks": ["Varachha Main Road", "Power looms"], "connectivity": 70, "popular_for": "Textile workers, affordable", "distance_km": 7, "metro_nearby": False, "upcoming": "Metro Phase 1"},
+    },
+    # ────── KOCHI ──────
+    "Kochi": {
+        "Marine Drive": {"rate_multiplier": 1.45, "type": "Premium Waterfront", "pin": "682031", "landmarks": ["Marine Drive Walkway", "Lulu Mall"], "connectivity": 90, "popular_for": "Waterfront apartments, tourism", "distance_km": 2, "metro_nearby": True, "upcoming": "Water metro extension"},
+        "Edappally": {"rate_multiplier": 1.10, "type": "Commercial Hub", "pin": "682024", "landmarks": ["Lulu Mall", "NH Bypass"], "connectivity": 82, "popular_for": "Shopping, connectivity, IT", "distance_km": 6, "metro_nearby": True, "upcoming": "Metro Phase 1 extension"},
+        "Kakkanad": {"rate_multiplier": 1.00, "type": "IT Hub (Infopark)", "pin": "682030", "landmarks": ["Infopark", "Smart City Kochi"], "connectivity": 72, "popular_for": "IT employees, new apartments", "distance_km": 12, "metro_nearby": False, "upcoming": "Infopark Phase 3, metro extension"},
+        "Fort Kochi": {"rate_multiplier": 1.30, "type": "Heritage Tourism", "pin": "682001", "landmarks": ["Chinese Fishing Nets", "St Francis Church"], "connectivity": 70, "popular_for": "Boutique hotels, heritage", "distance_km": 8, "metro_nearby": False, "upcoming": "Heritage conservation, water metro"},
+        "Aluva": {"rate_multiplier": 0.75, "type": "Satellite Town", "pin": "683101", "landmarks": ["Aluva Metro Terminal", "Aluva Shiva Temple"], "connectivity": 75, "popular_for": "Affordable, metro access", "distance_km": 18, "metro_nearby": True, "upcoming": "Metro extension, airport proximity"},
+    },
+    # ────── CHANDIGARH ──────
+    "Chandigarh City": {
+        "Sector 17": {"rate_multiplier": 1.40, "type": "Central Business District", "pin": "160017", "landmarks": ["Sector 17 Plaza", "Parade Ground"], "connectivity": 95, "popular_for": "Shopping, government, heritage", "distance_km": 2, "metro_nearby": False, "upcoming": "Metro Phase 1 (under planning)"},
+        "Sector 35": {"rate_multiplier": 1.25, "type": "Commercial Hub", "pin": "160035", "landmarks": ["Sector 35 Market", "Food Street"], "connectivity": 88, "popular_for": "Restaurants, nightlife, offices", "distance_km": 3, "metro_nearby": False, "upcoming": "Commercial modernization"},
+        "Sector 44": {"rate_multiplier": 1.15, "type": "Institutional Zone", "pin": "160044", "landmarks": ["PGI Hospital", "Chandigarh Club"], "connectivity": 85, "popular_for": "Medical, government, education", "distance_km": 5, "metro_nearby": False, "upcoming": "AIIMS expansion"},
+        "Manimajra": {"rate_multiplier": 0.75, "type": "Affordable Residential", "pin": "160101", "landmarks": ["Manimajra Housing Board"], "connectivity": 72, "popular_for": "Budget housing, east Chandigarh", "distance_km": 8, "metro_nearby": False, "upcoming": "Metro Phase 1, new sectors"},
+        "IT Park (Rajiv Gandhi)": {"rate_multiplier": 1.20, "type": "IT/Tech Hub", "pin": "160101", "landmarks": ["Rajiv Gandhi IT Park", "Infosys Campus"], "connectivity": 78, "popular_for": "IT professionals, startups", "distance_km": 10, "metro_nearby": False, "upcoming": "IT park expansion, metro"},
+    },
+    # ────── COIMBATORE ──────
+    "Coimbatore": {
+        "RS Puram": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "641002", "landmarks": ["Brookefields Mall", "RS Puram Market"], "connectivity": 88, "popular_for": "Established families, premium", "distance_km": 3, "metro_nearby": False, "upcoming": "City modernization"},
+        "Saravanampatti": {"rate_multiplier": 1.10, "type": "IT/Growth Corridor", "pin": "641035", "landmarks": ["ELCOT IT Park", "Wipro Campus"], "connectivity": 70, "popular_for": "IT professionals, new projects", "distance_km": 12, "metro_nearby": False, "upcoming": "IT corridor expansion"},
+        "Peelamedu": {"rate_multiplier": 1.05, "type": "Airport Corridor", "pin": "641004", "landmarks": ["Coimbatore Airport", "Fun Republic"], "connectivity": 80, "popular_for": "Airport access, commercial", "distance_km": 8, "metro_nearby": False, "upcoming": "Airport expansion"},
+        "Singanallur": {"rate_multiplier": 0.90, "type": "Commercial Hub", "pin": "641005", "landmarks": ["Singanallur Tank", "Railway Station"], "connectivity": 82, "popular_for": "Markets, mid-segment", "distance_km": 5, "metro_nearby": False, "upcoming": "Railway station upgrade"},
+        "Ganapathy": {"rate_multiplier": 0.85, "type": "Residential", "pin": "641006", "landmarks": ["Marudhamalai Temple", "GN Mills"], "connectivity": 72, "popular_for": "Affordable, temple town edge", "distance_km": 7, "metro_nearby": False, "upcoming": "Ring road connectivity"},
+    },
+    # ────── VISAKHAPATNAM ──────
+    "Visakhapatnam": {
+        "Rushikonda": {"rate_multiplier": 1.30, "type": "Beach Premium", "pin": "530045", "landmarks": ["Rushikonda Beach", "TDP Office"], "connectivity": 70, "popular_for": "Sea-facing, premium villas", "distance_km": 12, "metro_nearby": False, "upcoming": "IT SEZ expansion"},
+        "Seethammadhara": {"rate_multiplier": 1.20, "type": "Premium Residential", "pin": "530013", "landmarks": ["GITAM University", "CMR Central"], "connectivity": 82, "popular_for": "Families, educational zone", "distance_km": 5, "metro_nearby": False, "upcoming": "Vizag Metro (planned)"},
+        "Madhurawada": {"rate_multiplier": 1.05, "type": "IT Growth Zone", "pin": "530048", "landmarks": ["IT Hills", "Andhra University"], "connectivity": 72, "popular_for": "IT campus proximity, new homes", "distance_km": 10, "metro_nearby": False, "upcoming": "IT SEZ, metro corridor"},
+        "Gajuwaka": {"rate_multiplier": 0.75, "type": "Industrial Hub", "pin": "530026", "landmarks": ["Steel Plant", "Industrial Estate"], "connectivity": 68, "popular_for": "Industrial workers, affordable", "distance_km": 15, "metro_nearby": False, "upcoming": "Industrial modernization"},
+        "MVP Colony": {"rate_multiplier": 1.10, "type": "Residential Hub", "pin": "530017", "landmarks": ["MVP Double Road", "Asilmetta"], "connectivity": 80, "popular_for": "Central residential, markets", "distance_km": 3, "metro_nearby": False, "upcoming": "Road upgrades"},
+    },
+    # ────── INDORE ──────
+    "Indore": {
+        "Vijay Nagar": {"rate_multiplier": 1.30, "type": "Premium Residential", "pin": "452010", "landmarks": ["Vijay Nagar Square", "Treasure Island"], "connectivity": 85, "popular_for": "Premium apartments, dining", "distance_km": 6, "metro_nearby": False, "upcoming": "Indore Metro Phase 1"},
+        "Palasia": {"rate_multiplier": 1.20, "type": "Central Commercial", "pin": "452001", "landmarks": ["Palasia Square", "56 Dukan"], "connectivity": 90, "popular_for": "Shopping, heritage, street food", "distance_km": 2, "metro_nearby": False, "upcoming": "Metro Phase 1 station"},
+        "Super Corridor": {"rate_multiplier": 1.15, "type": "IT Corridor", "pin": "452010", "landmarks": ["Super Corridor Road", "IIM Indore"], "connectivity": 70, "popular_for": "IT/IIM proximity, new projects", "distance_km": 12, "metro_nearby": False, "upcoming": "IT park expansion"},
+        "Nipania": {"rate_multiplier": 0.90, "type": "Emerging Residential", "pin": "452010", "landmarks": ["Nipania Bypass", "C21 Mall"], "connectivity": 72, "popular_for": "Affordable, growing area", "distance_km": 8, "metro_nearby": False, "upcoming": "Metro corridor, commercial expansion"},
+    },
+    # ────── VADODARA ──────
+    "Vadodara": {
+        "Alkapuri": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "390007", "landmarks": ["Sayaji Baug", "Inox Multiplex"], "connectivity": 88, "popular_for": "Heritage, premium families", "distance_km": 3, "metro_nearby": False, "upcoming": "City modernization"},
+        "Gotri": {"rate_multiplier": 1.00, "type": "Residential Hub", "pin": "390021", "landmarks": ["Gotri Road", "Akota Stadium"], "connectivity": 72, "popular_for": "Mid-segment families", "distance_km": 6, "metro_nearby": False, "upcoming": "Road widening, new infra"},
+        "Karelibaug": {"rate_multiplier": 0.95, "type": "Commercial Market", "pin": "390018", "landmarks": ["Karelibaug Market", "Race Course"], "connectivity": 80, "popular_for": "Markets, established area", "distance_km": 4, "metro_nearby": False, "upcoming": "Smart city initiatives"},
+        "Manjalpur": {"rate_multiplier": 0.85, "type": "Emerging Residential", "pin": "390011", "landmarks": ["Manjalpur GIDC"], "connectivity": 70, "popular_for": "Affordable, industrial area", "distance_km": 8, "metro_nearby": False, "upcoming": "Industrial corridor"},
+    },
+    # ────── THIRUVANANTHAPURAM ──────
+    "Thiruvananthapuram": {
+        "Technopark": {"rate_multiplier": 1.25, "type": "IT SEZ", "pin": "695581", "landmarks": ["Technopark Campus", "Infosys TVM"], "connectivity": 75, "popular_for": "IT professionals, campus life", "distance_km": 12, "metro_nearby": False, "upcoming": "Phase 3 expansion, monorail"},
+        "Kowdiar": {"rate_multiplier": 1.40, "type": "Premium Residential", "pin": "695003", "landmarks": ["Kowdiar Palace", "Museum Road"], "connectivity": 85, "popular_for": "Government, premium, heritage", "distance_km": 3, "metro_nearby": False, "upcoming": "Heritage conservation"},
+        "Kazhakkoottam": {"rate_multiplier": 0.90, "type": "IT Corridor", "pin": "695582", "landmarks": ["Technocity", "NH Bypass"], "connectivity": 72, "popular_for": "IT growth zone, new apartments", "distance_km": 14, "metro_nearby": False, "upcoming": "Technocity expansion"},
+        "East Fort / Chalai": {"rate_multiplier": 0.80, "type": "Heritage Market", "pin": "695023", "landmarks": ["Padmanabhaswamy Temple", "Chalai Market"], "connectivity": 80, "popular_for": "Heritage, spice market", "distance_km": 1, "metro_nearby": False, "upcoming": "Temple corridor development"},
+    },
+    # ────── BHOPAL ──────
+    "Bhopal": {
+        "Arera Colony": {"rate_multiplier": 1.30, "type": "Premium Residential", "pin": "462016", "landmarks": ["Arera Hills", "DB Mall"], "connectivity": 85, "popular_for": "Premium, government officers", "distance_km": 5, "metro_nearby": False, "upcoming": "Bhopal Metro Phase 1"},
+        "MP Nagar": {"rate_multiplier": 1.25, "type": "Commercial Hub", "pin": "462011", "landmarks": ["MP Nagar Zone I & II", "DB City"], "connectivity": 88, "popular_for": "Corporate offices, coaching", "distance_km": 6, "metro_nearby": False, "upcoming": "Metro Phase 1 station"},
+        "Hoshangabad Road": {"rate_multiplier": 1.00, "type": "Growth Corridor", "pin": "462026", "landmarks": ["Mandideep Industrial Area"], "connectivity": 70, "popular_for": "New townships, industrial", "distance_km": 12, "metro_nearby": False, "upcoming": "Smart city corridor"},
+        "Kolar Road": {"rate_multiplier": 0.85, "type": "Emerging Residential", "pin": "462042", "landmarks": ["Kolar Dam Road", "Habibganj Station"], "connectivity": 68, "popular_for": "Affordable, new projects", "distance_km": 10, "metro_nearby": False, "upcoming": "New Habibganj station development"},
+    },
+    # ────── NAGPUR ──────
+    "Nagpur": {
+        "Dharampeth": {"rate_multiplier": 1.35, "type": "Premium Residential", "pin": "440010", "landmarks": ["Law College Square", "Dharampeth Market"], "connectivity": 88, "popular_for": "Old money, premium fabric", "distance_km": 3, "metro_nearby": True, "upcoming": "Metro Aqua Line"},
+        "Wardha Road": {"rate_multiplier": 0.90, "type": "Growth Corridor", "pin": "440025", "landmarks": ["MIHAN SEZ", "Airport Rd"], "connectivity": 72, "popular_for": "MIHAN/Airport zone, new homes", "distance_km": 12, "metro_nearby": False, "upcoming": "MIHAN expansion, metro extension"},
+        "Manish Nagar": {"rate_multiplier": 1.00, "type": "Residential Hub", "pin": "440015", "landmarks": ["Manish Nagar Square", "Sitabuldi Fort"], "connectivity": 78, "popular_for": "Central residential, families", "distance_km": 5, "metro_nearby": True, "upcoming": "Metro Green Line"},
+        "Hingna Road": {"rate_multiplier": 0.75, "type": "Industrial Corridor", "pin": "440016", "landmarks": ["Hingna MIDC"], "connectivity": 65, "popular_for": "Affordable, industrial workers", "distance_km": 14, "metro_nearby": False, "upcoming": "Industrial modernization"},
+    },
+    # ────── RAIPUR ──────
+    "Raipur": {
+        "Shankar Nagar": {"rate_multiplier": 1.30, "type": "Premium Commercial", "pin": "492007", "landmarks": ["Shankar Nagar Main Rd", "Magneto Mall"], "connectivity": 85, "popular_for": "Premium shopping, dining", "distance_km": 3, "metro_nearby": False, "upcoming": "Smart city projects"},
+        "Telibandha": {"rate_multiplier": 1.20, "type": "Lake Residential", "pin": "492001", "landmarks": ["Telibandha Lake", "Marine Drive Raipur"], "connectivity": 80, "popular_for": "Lakefront living, upscale", "distance_km": 4, "metro_nearby": False, "upcoming": "Lake beautification"},
+        "VIP Road (Naya Raipur)": {"rate_multiplier": 1.10, "type": "New Capital Zone", "pin": "492001", "landmarks": ["Naya Raipur Sector 24"], "connectivity": 65, "popular_for": "New capital, investment", "distance_km": 15, "metro_nearby": False, "upcoming": "Naya Raipur development"},
+        "Tatibandh": {"rate_multiplier": 0.80, "type": "Affordable Residential", "pin": "492099", "landmarks": ["Airport Road"], "connectivity": 60, "popular_for": "Budget housing, airport area", "distance_km": 12, "metro_nearby": False, "upcoming": "Airport expansion"},
+    },
+    # ────── GUWAHATI ──────
+    "Guwahati": {
+        "GS Road": {"rate_multiplier": 1.25, "type": "Central Commercial", "pin": "781005", "landmarks": ["GS Road", "Ganeshguri Flyover"], "connectivity": 85, "popular_for": "Shopping, offices, dining", "distance_km": 4, "metro_nearby": False, "upcoming": "Guwahati Metro (planned)"},
+        "Zoo Road": {"rate_multiplier": 1.15, "type": "Premium Residential", "pin": "781024", "landmarks": ["Assam State Zoo", "RG Baruah Rd"], "connectivity": 80, "popular_for": "Established families, central", "distance_km": 5, "metro_nearby": False, "upcoming": "Road widening"},
+        "Beltola": {"rate_multiplier": 1.00, "type": "Growth Corridor", "pin": "781028", "landmarks": ["Beltola Tiniali", "Survey Chariali"], "connectivity": 72, "popular_for": "New apartments, affordable central", "distance_km": 8, "metro_nearby": False, "upcoming": "Smart city initiatives"},
+        "Azara (Airport Road)": {"rate_multiplier": 0.80, "type": "Airport Zone", "pin": "781015", "landmarks": ["Lokpriya Airport", "IIT Guwahati"], "connectivity": 65, "popular_for": "Airport proximity, IIT zone", "distance_km": 18, "metro_nearby": False, "upcoming": "Airport expansion, new townships"},
+    },
+}
+
+
+def get_areas_in_city(city_name):
+    """Return sorted list of area names for a given city. Returns empty list if city has no area data."""
+    if city_name in CITY_AREAS:
+        return sorted(CITY_AREAS[city_name].keys())
+    return []
+
+
+def get_area_details(city_name, area_name, city_base_rate):
+    """
+    Return detailed information about a specific area within a city.
+    city_base_rate is the current ₹/sqft rate for the city (latest year).
+    Returns dict with estimated area rate, type, landmarks, etc.
+    """
+    if city_name not in CITY_AREAS or area_name not in CITY_AREAS[city_name]:
+        return None
+    area = CITY_AREAS[city_name][area_name]
+    estimated_rate = round(city_base_rate * area["rate_multiplier"])
+    premium_pct = round((area["rate_multiplier"] - 1.0) * 100, 1)
+    return {
+        "area_name": area_name,
+        "estimated_rate": estimated_rate,
+        "rate_multiplier": area["rate_multiplier"],
+        "premium_pct": premium_pct,
+        "type": area["type"],
+        "pin_code": area["pin"],
+        "landmarks": area["landmarks"],
+        "connectivity_score": area["connectivity"],
+        "popular_for": area["popular_for"],
+        "distance_from_center_km": area["distance_km"],
+        "metro_nearby": area["metro_nearby"],
+        "upcoming_development": area["upcoming"],
+    }
+
+
+def get_all_area_details(city_name, city_base_rate):
+    """Return list of all area details for a city, sorted by rate (highest first)."""
+    areas = get_areas_in_city(city_name)
+    if not areas:
+        return []
+    result = []
+    for a in areas:
+        detail = get_area_details(city_name, a, city_base_rate)
+        if detail:
+            result.append(detail)
+    result.sort(key=lambda x: x["estimated_rate"], reverse=True)
+    return result
+
 
 def get_land_rate_data():
     """Generate comprehensive land rate data for all India locations."""
