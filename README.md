@@ -80,8 +80,9 @@ This app provides **indicative/educational** land rate data. Actual land prices 
 
 ## 📄 License
 
-MIT License – free to use, modify, and distribute.
+Licensed and Not free to use
 
 ---
 
 Built with ❤️ using Streamlit & Python
+
