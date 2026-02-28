@@ -233,16 +233,16 @@ st.markdown("""
 
     /* Weather Widget */
     .weather-card {
-        background: linear-gradient(135deg, rgba(14,165,233,0.15) 0%, rgba(56,189,248,0.08) 100%);
-        border: 1px solid rgba(14,165,233,0.25); border-radius: 14px;
+        background: linear-gradient(135deg, rgba(14,165,233,0.22) 0%, rgba(99,102,241,0.12) 100%);
+        border: 1px solid rgba(56,189,248,0.35); border-radius: 14px;
         padding: 0.9rem 1rem; text-align: center; margin-bottom: 0.5rem;
     }
     .weather-top { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.3rem; }
-    .weather-temp { font-size: 1.6rem; font-weight: 800; color: #38bdf8 !important; }
-    .weather-cond { font-size: 0.82rem; color: #c5cdd7 !important; font-weight: 500; margin-bottom: 0.4rem; }
-    .weather-details { display: flex; justify-content: space-around; font-size: 0.72rem; color: #9ca3af !important; }
+    .weather-temp { font-size: 1.6rem; font-weight: 800; color: #67e8f9 !important; text-shadow: 0 0 8px rgba(103,232,249,0.3); }
+    .weather-cond { font-size: 0.85rem; color: #ffffff !important; font-weight: 600; margin-bottom: 0.4rem; }
+    .weather-details { display: flex; justify-content: space-around; font-size: 0.74rem; color: #a5b4fc !important; }
     .weather-detail-item { text-align: center; }
-    .weather-detail-val { font-weight: 700; color: #e0e0e0 !important; font-size: 0.78rem; }
+    .weather-detail-val { font-weight: 700; color: #ffffff !important; font-size: 0.8rem; }
     .aqi-badge {
         display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem;
         border-radius: 6px; margin-top: 0.4rem; letter-spacing: 0.3px;
