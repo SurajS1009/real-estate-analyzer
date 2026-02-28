@@ -439,7 +439,7 @@ CITY_CLIMATE = {
 # ─── Sidebar ───
 with st.sidebar:
     st.image("https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/255px-Flag_of_India.svg.png", width=70)
-    st.markdown("## 🇮🇳 Land Rate Analyzer")
+    st.markdown("## 🇮🇳 PlotGuide")
     st.caption("All 28 States + 8 Union Territories")
     st.divider()
 
