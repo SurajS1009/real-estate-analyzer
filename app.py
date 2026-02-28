@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+from streamlit_option_menu import option_menu
 
 from data_module import (
     get_land_rate_data, get_all_states, get_cities_in_state,
@@ -135,20 +136,42 @@ with st.sidebar:
     st.caption("All 28 States + 8 Union Territories")
     st.divider()
 
-    page = st.radio(
-        "Navigate",
-        [
-            "🏠 Home",
-            "📍 Location Overview",
-            "📈 Rate Prediction",
-            "🗺️ Interactive Map",
-            "⚖️ Compare Locations",
-            "💰 Investment Calculator",
-            "🛡️ Legal Risk Checker",
-            "🚨 Area Risk Alerts",
+    page = option_menu(
+        menu_title=None,
+        options=[
+            "Home",
+            "Location Overview",
+            "Rate Prediction",
+            "Interactive Map",
+            "Compare Locations",
+            "Investment Calculator",
+            "Legal Risk Checker",
+            "Area Risk Alerts",
         ],
-        index=0,
-        label_visibility="collapsed",
+        icons=[
+            "house-door-fill",
+            "geo-alt-fill",
+            "graph-up-arrow",
+            "map-fill",
+            "arrow-left-right",
+            "calculator-fill",
+            "shield-fill-check",
+            "exclamation-triangle-fill",
+        ],
+        default_index=0,
+        styles={
+            "container": {"padding": "0!important", "background-color": "transparent"},
+            "icon": {"color": "#FF6B35", "font-size": "16px"},
+            "nav-link": {
+                "font-size": "14px", "text-align": "left", "margin": "2px 0",
+                "padding": "8px 12px", "color": "#2c3e50", "border-radius": "8px",
+                "--hover-color": "rgba(255,107,53,0.08)",
+            },
+            "nav-link-selected": {
+                "background-color": "rgba(255,107,53,0.12)",
+                "color": "#FF6B35", "font-weight": "700",
+            },
+        },
     )
 
     st.divider()
@@ -184,7 +207,7 @@ with st.sidebar:
 # ═══════════════════════════════════════════
 #  🏠  HOME PAGE
 # ═══════════════════════════════════════════
-if page == "🏠 Home":
+if page == "Home":
 
     latest_year = df["Year"].max()
     latest_df = df[df["Year"] == latest_year]
@@ -309,7 +332,7 @@ if page == "🏠 Home":
 # ═══════════════════════════════════════════
 #  📍  LOCATION OVERVIEW
 # ═══════════════════════════════════════════
-elif page == "📍 Location Overview":
+elif page == "Location Overview":
 
     st.header(f"📍 {selected_location}")
     insights = get_location_insights(selected_location, df)
@@ -441,7 +464,7 @@ elif page == "📍 Location Overview":
 # ═══════════════════════════════════════════
 #  📈  RATE PREDICTION
 # ═══════════════════════════════════════════
-elif page == "📈 Rate Prediction":
+elif page == "Rate Prediction":
 
     st.header(f"📈 Rate Prediction – {selected_location}")
     st.caption("ML-powered price forecasting using polynomial regression with confidence intervals.")
@@ -493,7 +516,7 @@ elif page == "📈 Rate Prediction":
 # ═══════════════════════════════════════════
 #  🗺️  INTERACTIVE MAP
 # ═══════════════════════════════════════════
-elif page == "🗺️ Interactive Map":
+elif page == "Interactive Map":
 
     st.header("🗺️ India Land Rate Map")
     st.caption("Explore land rates across all 200+ locations in India for any year.")
@@ -547,7 +570,7 @@ elif page == "🗺️ Interactive Map":
 # ═══════════════════════════════════════════
 #  ⚖️  COMPARE LOCATIONS
 # ═══════════════════════════════════════════
-elif page == "⚖️ Compare Locations":
+elif page == "Compare Locations":
 
     st.header("⚖️ Compare Locations")
     st.caption("Select 2–6 cities for a side-by-side comparison on rates, growth, and infrastructure.")
@@ -602,7 +625,7 @@ elif page == "⚖️ Compare Locations":
 # ═══════════════════════════════════════════
 #  💰  INVESTMENT CALCULATOR
 # ═══════════════════════════════════════════
-elif page == "💰 Investment Calculator":
+elif page == "Investment Calculator":
 
     st.header("💰 Investment Calculator")
     st.caption(f"Estimate your return on investment for land in **{selected_location}**.")
@@ -661,7 +684,7 @@ elif page == "💰 Investment Calculator":
 # ═══════════════════════════════════════════
 #  🛡️  LEGAL RISK CHECKER
 # ═══════════════════════════════════════════
-elif page == "🛡️ Legal Risk Checker":
+elif page == "Legal Risk Checker":
 
     st.header(f"🛡️ Legal Risk Checker – {selected_location}")
     st.caption("Comprehensive legal due diligence assessment based on state-specific land laws and zone type.")
@@ -802,7 +825,7 @@ elif page == "🛡️ Legal Risk Checker":
 # ═══════════════════════════════════════════
 #  🚨  AREA RISK ALERTS
 # ═══════════════════════════════════════════
-elif page == "🚨 Area Risk Alerts":
+elif page == "Area Risk Alerts":
 
     st.header(f"🚨 Area Risk Alerts – {selected_location}")
     st.caption("Environmental, safety, and development proximity risk assessment for your selected location.")
