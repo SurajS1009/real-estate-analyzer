@@ -33,47 +33,86 @@ st.set_page_config(
 # ─── Custom CSS ───
 st.markdown("""
 <style>
-    .block-container { padding-top: 1.5rem; }
-    .main-header {
-        font-size: 2.4rem; font-weight: 800;
-        background: linear-gradient(90deg, #FF6B35 0%, #F7C948 100%);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        text-align: center; margin-bottom: 0.2rem;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    .block-container { padding-top: 1.2rem; font-family: 'Inter', sans-serif; }
+
+    /* Hero */
+    .hero-wrap {
+        text-align: center; padding: 2.5rem 1rem 1.8rem;
+        background: linear-gradient(135deg, rgba(255,107,53,0.06) 0%, rgba(247,201,72,0.04) 100%);
+        border-radius: 20px; margin-bottom: 2rem;
     }
-    .sub-header { font-size: 1rem; color: #aaa; text-align: center; margin-bottom: 1.6rem; }
+    .main-header {
+        font-size: 2.6rem; font-weight: 800; letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #FF6B35 0%, #e85d26 50%, #F7C948 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        margin-bottom: 0.4rem;
+    }
+    .sub-header { font-size: 1.05rem; color: #8b95a5; margin-bottom: 0; font-weight: 400; }
+    .hero-badge {
+        display: inline-block; margin-top: 1rem;
+        background: rgba(255,107,53,0.1); color: #FF6B35; font-size: 0.78rem; font-weight: 600;
+        padding: 0.35rem 1rem; border-radius: 20px; letter-spacing: 0.3px;
+    }
+
+    /* Sidebar */
     section[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
     }
-    section[data-testid="stSidebar"] * {
-        color: #1a1a2e !important;
-    }
-    section[data-testid="stSidebar"] .stRadio label span {
-        color: #2c3e50 !important; font-weight: 500;
-    }
-    section[data-testid="stSidebar"] .stRadio label[data-checked="true"] span {
-        color: #FF6B35 !important; font-weight: 700;
-    }
+    section[data-testid="stSidebar"] * { color: #1a1a2e !important; }
+    section[data-testid="stSidebar"] .stRadio label span { color: #2c3e50 !important; font-weight: 500; }
+    section[data-testid="stSidebar"] .stRadio label[data-checked="true"] span { color: #FF6B35 !important; font-weight: 700; }
     section[data-testid="stSidebar"] .stSelectbox label,
     section[data-testid="stSidebar"] .stMetric label,
-    section[data-testid="stSidebar"] h4, section[data-testid="stSidebar"] h2 {
-        color: #1a1a2e !important;
-    }
-    section[data-testid="stSidebar"] .stMetric [data-testid="stMetricValue"] {
-        color: #FF6B35 !important;
-    }
+    section[data-testid="stSidebar"] h4, section[data-testid="stSidebar"] h2 { color: #1a1a2e !important; }
+    section[data-testid="stSidebar"] .stMetric [data-testid="stMetricValue"] { color: #FF6B35 !important; }
     section[data-testid="stSidebar"] hr { border-color: #dee2e6 !important; }
-    .feature-card {
-        background: rgba(255,255,255,0.04); padding: 1.4rem; border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.08); text-align: center;
+
+    /* Feature Cards */
+    .feat-card {
+        background: rgba(255,255,255,0.035); padding: 1.5rem 1.2rem 1.3rem; border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.07); text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .feature-icon  { font-size: 2.4rem; margin-bottom: 0.6rem; }
-    .feature-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; color: #FF6B35; }
-    .feature-desc  { font-size: 0.85rem; color: #aaa; }
+    .feat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(255,107,53,0.12); }
+    .feat-icon {
+        width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 0.9rem;
+        display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .feat-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.35rem; color: #e8e8e8; letter-spacing: -0.2px; }
+    .feat-desc  { font-size: 0.82rem; color: #8b95a5; line-height: 1.45; }
+
+    /* Step Cards */
+    .step-card {
+        background: rgba(255,255,255,0.03); padding: 1.6rem; border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.06); text-align: left;
+        transition: transform 0.2s ease;
+    }
+    .step-card:hover { transform: translateY(-3px); }
     .step-num {
-        display: inline-block; width: 32px; height: 32px; background: #FF6B35; color: #fff;
-        border-radius: 50%; text-align: center; line-height: 32px; font-weight: 700; margin-right: 0.6rem;
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 34px; height: 34px; border-radius: 10px; font-weight: 800; font-size: 0.9rem;
+        margin-right: 0.7rem; flex-shrink: 0;
     }
-    .stMetric { background: rgba(255,107,53,0.06); border-radius: 10px; padding: 0.8rem; }
+    .step-title { font-weight: 600; font-size: 1rem; color: #e0e0e0; }
+    .step-desc  { margin-top: 0.7rem; color: #8b95a5; font-size: 0.88rem; line-height: 1.5; }
+
+    /* Section Headers */
+    .section-hdr {
+        font-size: 1.3rem; font-weight: 700; color: #e0e0e0; margin-bottom: 0.3rem; letter-spacing: -0.3px;
+    }
+    .section-sub { font-size: 0.88rem; color: #6b7685; margin-bottom: 1.4rem; }
+
+    /* Stat Pills */
+    .stat-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 1.2rem 0 0.5rem; }
+    .stat-pill {
+        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px; padding: 0.7rem 1.3rem; text-align: center; min-width: 150px;
+    }
+    .stat-val  { font-size: 1.4rem; font-weight: 800; color: #FF6B35; }
+    .stat-label { font-size: 0.78rem; color: #8b95a5; margin-top: 0.15rem; font-weight: 500; }
+
+    .stMetric { background: rgba(255,107,53,0.05); border-radius: 12px; padding: 0.8rem; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -147,102 +186,124 @@ with st.sidebar:
 # ═══════════════════════════════════════════
 if page == "🏠 Home":
 
-    st.markdown('<p class="main-header">🇮🇳 India Land Rate Analyzer & Predictor</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Your one-stop platform for land rate insights across 200+ Indian cities & towns</p>', unsafe_allow_html=True)
-
     latest_year = df["Year"].max()
     latest_df = df[df["Year"] == latest_year]
     avg_rate = latest_df["Rate_Per_SqFt"].mean()
     top_city = latest_df.loc[latest_df["Rate_Per_SqFt"].idxmax(), "Location"]
     top_rate = latest_df["Rate_Per_SqFt"].max()
     avg_growth = latest_df["Annual_Growth_Pct"].mean()
+    total_locs = df["Location"].nunique()
+    total_states = df["State"].nunique()
 
-    m1, m2, m3, m4 = st.columns(4)
-    with m1:
-        st.metric("🏙️ Cities Covered", f"{df['Location'].nunique()}")
-    with m2:
-        st.metric("📊 Avg Rate (2026)", f"₹{avg_rate:,.0f}/sqft")
-    with m3:
-        st.metric("🏆 Highest Rate City", top_city.split(",")[0], f"₹{top_rate:,.0f}/sqft")
-    with m4:
-        st.metric("📈 Avg Growth", f"{avg_growth:.1f}%")
+    # ── Hero Section ──
+    st.markdown(f'''
+    <div class="hero-wrap">
+        <p class="main-header">India Land Rate Analyzer</p>
+        <p class="sub-header">Intelligent land rate insights, predictions &amp; risk analysis across 200+ Indian cities</p>
+        <span class="hero-badge">✦ Powered by Machine Learning &nbsp;·&nbsp; {total_locs} Locations &nbsp;·&nbsp; {total_states} States & UTs</span>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    # ── Key Numbers ──
+    st.markdown(f'''
+    <div class="stat-row">
+        <div class="stat-pill"><div class="stat-val">{total_locs}</div><div class="stat-label">Cities & Towns</div></div>
+        <div class="stat-pill"><div class="stat-val">₹{avg_rate:,.0f}</div><div class="stat-label">Avg Rate / sqft</div></div>
+        <div class="stat-pill"><div class="stat-val">{top_city.split(",")[0]}</div><div class="stat-label">Highest Priced</div></div>
+        <div class="stat-pill"><div class="stat-val">{avg_growth:.1f}%</div><div class="stat-label">Avg Annual Growth</div></div>
+    </div>
+    ''', unsafe_allow_html=True)
 
     st.markdown("")
-
-    # Feature Cards
-    st.markdown("### ✨ What You Can Do")
     st.markdown("")
 
-    def _feature_card(icon, title, desc):
-        return f'<div class="feature-card"><div class="feature-icon">{icon}</div><div class="feature-title">{title}</div><div class="feature-desc">{desc}</div></div>'
+    # ── Feature Cards ──
+    def _feat(bg, icon, title, desc):
+        return f'''<div class="feat-card">
+            <div class="feat-icon" style="background:{bg};">{icon}</div>
+            <div class="feat-title">{title}</div>
+            <div class="feat-desc">{desc}</div>
+        </div>'''
 
-    def _step_card(num, title, desc):
-        return f'<div class="feature-card" style="text-align:left; padding:1.6rem;"><span class="step-num">{num}</span><strong>{title}</strong><p style="margin-top:0.6rem; color:#bbb; font-size:0.9rem;">{desc}</p></div>'
+    def _step(bg, num, title, desc):
+        return f'''<div class="step-card">
+            <div style="display:flex; align-items:center;">
+                <span class="step-num" style="background:{bg}; color:#fff;">{num}</span>
+                <span class="step-title">{title}</span>
+            </div>
+            <p class="step-desc">{desc}</p>
+        </div>'''
+
+    st.markdown('<p class="section-hdr">Explore the Platform</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-sub">Eight powerful tools to help you research, analyze, and invest with confidence.</p>', unsafe_allow_html=True)
 
     fc1, fc2, fc3, fc4 = st.columns(4)
     with fc1:
-        st.markdown(_feature_card("📍", "Location Overview", "View current rates, growth trends, area-level details &amp; development forecasts."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#FF6B35,#ff8c5a)", "◎", "Location Overview", "Current rates, growth trends, zone details &amp; development forecasts."), unsafe_allow_html=True)
     with fc2:
-        st.markdown(_feature_card("📈", "Rate Prediction", "ML-powered 1–10 year price predictions with confidence intervals."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#00b894,#00d4aa)", "⬈", "Rate Prediction", "ML-powered 1–10 year forecasts with confidence intervals."), unsafe_allow_html=True)
     with fc3:
-        st.markdown(_feature_card("🗺️", "Interactive Map", "Explore all 200+ locations on a color-coded map of India."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#6c5ce7,#a29bfe)", "◈", "Interactive Map", "Explore 200+ locations on an interactive color-coded India map."), unsafe_allow_html=True)
     with fc4:
-        st.markdown(_feature_card("⚖️", "Compare Locations", "Side-by-side comparison of up to 6 cities with radar charts."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#0984e3,#74b9ff)", "⇌", "Compare Cities", "Side-by-side comparison of up to 6 cities with radar charts."), unsafe_allow_html=True)
 
     st.markdown("")
     fc5, fc6, fc7, fc8 = st.columns(4)
     with fc5:
-        st.markdown(_feature_card("💰", "Investment Calculator", "Enter an amount &amp; horizon to see projected ROI and profits."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#fdcb6e,#e17055)", "◇", "Investment Calc", "Enter an amount &amp; horizon to project ROI and future profits."), unsafe_allow_html=True)
     with fc6:
-        st.markdown(_feature_card("🛡️", "Legal Risk Checker", "Due diligence on stamp duty, RERA, CRZ, tribal laws &amp; more."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#00cec9,#81ecec)", "⊘", "Legal Risk Check", "Stamp duty, RERA, CRZ, tribal law compliance &amp; due diligence."), unsafe_allow_html=True)
     with fc7:
-        st.markdown(_feature_card("🚨", "Area Risk Alerts", "Flood, water scarcity, illegal layouts, disputes &amp; dev-distance risks."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#d63031,#ff7675)", "△", "Area Risk Alerts", "Flood, water scarcity, illegal layouts, disputes &amp; proximity risks."), unsafe_allow_html=True)
     with fc8:
-        st.markdown(_feature_card("🏘️", "Locality Data", "30+ cities with neighbourhood-level rates, pin codes &amp; landmarks."), unsafe_allow_html=True)
+        st.markdown(_feat("linear-gradient(135deg,#636e72,#b2bec3)", "⊞", "Locality Data", "30+ cities with neighbourhood rates, pin codes &amp; landmarks."), unsafe_allow_html=True)
 
     st.markdown("")
     st.markdown("")
 
-    # How to Get Started
-    st.markdown("### 🚀 How to Get Started")
-    st.markdown("")
+    # ── How It Works ──
+    st.markdown('<p class="section-hdr">Getting Started</p>', unsafe_allow_html=True)
+    st.markdown('<p class="section-sub">Three simple steps to make data-driven land investment decisions.</p>', unsafe_allow_html=True)
 
     s1, s2, s3 = st.columns(3)
     with s1:
-        st.markdown(_step_card("1", "Pick a State & City", "Use the sidebar to select your target State/UT and City — or explore any area/locality."), unsafe_allow_html=True)
+        st.markdown(_step("#FF6B35", "1", "Select Location", "Pick any State, City, or Locality from the sidebar to focus your analysis."), unsafe_allow_html=True)
     with s2:
-        st.markdown(_step_card("2", "Navigate the Sections", "Click any page in the sidebar menu to explore rates, predictions, maps, legal checks, and more."), unsafe_allow_html=True)
+        st.markdown(_step("#00b894", "2", "Explore Insights", "Navigate between pages — view rates, predictions, maps, legal checks &amp; more."), unsafe_allow_html=True)
     with s3:
-        st.markdown(_step_card("3", "Make Informed Decisions", "Compare cities, estimate costs, check legal risks — all backed by data across 200+ locations."), unsafe_allow_html=True)
+        st.markdown(_step("#6c5ce7", "3", "Decide with Data", "Compare locations, run investment scenarios &amp; check legal risks before you invest."), unsafe_allow_html=True)
 
     st.markdown("")
     st.markdown("")
 
-    # Top 10 Cities
-    st.markdown("### 🏅 Top 10 Cities by Current Rate")
-    top10 = latest_df.nlargest(10, "Rate_Per_SqFt")[["Location", "Rate_Per_SqFt", "Annual_Growth_Pct", "Infrastructure_Score", "Zone_Type"]].copy()
-    top10.columns = ["City", "Rate (₹/sqft)", "Growth %", "Infra Score", "Zone Type"]
-    top10["Rate (₹/sqft)"] = top10["Rate (₹/sqft)"].apply(lambda v: f"₹{v:,.0f}")
-    top10 = top10.reset_index(drop=True)
-    top10.index = top10.index + 1
-    st.dataframe(top10, use_container_width=True)
+    # ── Top Cities & Map side by side ──
+    col_table, col_map = st.columns([1, 1], gap="large")
 
-    st.markdown("")
+    with col_table:
+        st.markdown('<p class="section-hdr">Top 10 Cities by Rate</p>', unsafe_allow_html=True)
+        st.markdown('<p class="section-sub">Highest land rates across India for the latest year.</p>', unsafe_allow_html=True)
+        top10 = latest_df.nlargest(10, "Rate_Per_SqFt")[["Location", "Rate_Per_SqFt", "Annual_Growth_Pct", "Infrastructure_Score", "Zone_Type"]].copy()
+        top10.columns = ["City", "Rate (₹/sqft)", "Growth %", "Infra Score", "Zone"]
+        top10["Rate (₹/sqft)"] = top10["Rate (₹/sqft)"].apply(lambda v: f"₹{v:,.0f}")
+        top10 = top10.reset_index(drop=True)
+        top10.index = top10.index + 1
+        st.dataframe(top10, use_container_width=True, height=420)
 
-    # Mini Map
-    st.markdown("### 🗺️ Quick Glance — India Land Rate Map")
-    mini_map_df = latest_df.copy()
-    mini_map_df["Rate_Display"] = mini_map_df["Rate_Per_SqFt"].apply(lambda v: f"₹{v:,.0f}/sqft")
-    fig_mini = px.scatter_map(
-        mini_map_df, lat="Latitude", lon="Longitude",
-        color="Rate_Per_SqFt", size="Rate_Per_SqFt",
-        hover_name="Location",
-        hover_data={"Rate_Display": True, "Zone_Type": True, "Rate_Per_SqFt": False, "Latitude": False, "Longitude": False},
-        color_continuous_scale="YlOrRd", size_max=18, zoom=3.6,
-        center={"lat": 22.5, "lon": 82.0},
-    )
-    fig_mini.update_layout(map_style="carto-positron", height=480, margin=dict(l=0, r=0, t=10, b=0))
-    st.plotly_chart(fig_mini, use_container_width=True)
+    with col_map:
+        st.markdown('<p class="section-hdr">India at a Glance</p>', unsafe_allow_html=True)
+        st.markdown('<p class="section-sub">Land rates visualized across all covered locations.</p>', unsafe_allow_html=True)
+        mini_map_df = latest_df.copy()
+        mini_map_df["Rate_Display"] = mini_map_df["Rate_Per_SqFt"].apply(lambda v: f"₹{v:,.0f}/sqft")
+        fig_mini = px.scatter_map(
+            mini_map_df, lat="Latitude", lon="Longitude",
+            color="Rate_Per_SqFt", size="Rate_Per_SqFt",
+            hover_name="Location",
+            hover_data={"Rate_Display": True, "Zone_Type": True, "Rate_Per_SqFt": False, "Latitude": False, "Longitude": False},
+            color_continuous_scale="YlOrRd", size_max=18, zoom=3.6,
+            center={"lat": 22.5, "lon": 82.0},
+        )
+        fig_mini.update_layout(map_style="carto-positron", height=420, margin=dict(l=0, r=0, t=0, b=0))
+        st.plotly_chart(fig_mini, use_container_width=True)
 
 
 # ═══════════════════════════════════════════
