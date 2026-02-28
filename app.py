@@ -572,20 +572,20 @@ with st.sidebar:
 
         st.markdown(f'''
         <div class="weather-card">
-            <div style="font-size:0.72rem; color:#a5b4fc; margin-bottom:0.2rem; font-weight:600;">🌤 LIVE WEATHER</div>
+            <div style="font-size:0.72rem; color:#a5b4fc !important; -webkit-text-fill-color:#a5b4fc !important; margin-bottom:0.2rem; font-weight:600;">🌤 LIVE WEATHER</div>
             <div class="weather-top">
                 <img src="{icon_url}" width="38" style="margin:-4px 0;">
-                <span class="weather-temp" style="color:{temp_color} !important; text-shadow: 0 0 8px {temp_color}40;">{weather["temp_c"]:.0f}°C</span>
+                <span class="weather-temp" style="color:{temp_color} !important; -webkit-text-fill-color:{temp_color} !important; text-shadow: 0 0 10px {temp_color}50;">{weather["temp_c"]:.0f}°C</span>
             </div>
-            <div class="weather-cond">{weather["condition"]}</div>
+            <div class="weather-cond" style="color:#ffffff !important; -webkit-text-fill-color:#ffffff !important;">{weather["condition"]}</div>
             <div class="weather-details">
-                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{temp_color} !important;">{weather["feels"]:.0f}°C</div>Feels like</div>
-                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{hum_color} !important;">{weather["humidity"]}%</div>Humidity</div>
-                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{wind_color} !important;">{weather["wind_kph"]:.0f} km/h</div>Wind</div>
+                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{temp_color} !important; -webkit-text-fill-color:{temp_color} !important;">{weather["feels"]:.0f}°C</div><span style="color:#a5b4fc !important; -webkit-text-fill-color:#a5b4fc !important;">Feels like</span></div>
+                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{hum_color} !important; -webkit-text-fill-color:{hum_color} !important;">{weather["humidity"]}%</div><span style="color:#a5b4fc !important; -webkit-text-fill-color:#a5b4fc !important;">Humidity</span></div>
+                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{wind_color} !important; -webkit-text-fill-color:{wind_color} !important;">{weather["wind_kph"]:.0f} km/h</div><span style="color:#a5b4fc !important; -webkit-text-fill-color:#a5b4fc !important;">Wind</span></div>
             </div>
             <div style="display:flex; gap:0.4rem; justify-content:center; flex-wrap:wrap; margin-top:0.5rem;">
-                <span class="aqi-badge" style="background:{weather['aqi_color']}20; color:{weather['aqi_color']};">AQI: {weather['aqi_label']}</span>
-                <span class="aqi-badge" style="background:{uv_color}20; color:{uv_color};">UV: {uv:.0f} ({uv_label})</span>
+                <span class="aqi-badge" style="background:{weather['aqi_color']}20; color:{weather['aqi_color']} !important; -webkit-text-fill-color:{weather['aqi_color']} !important;">AQI: {weather['aqi_label']}</span>
+                <span class="aqi-badge" style="background:{uv_color}20; color:{uv_color} !important; -webkit-text-fill-color:{uv_color} !important;">UV: {uv:.0f} ({uv_label})</span>
             </div>
         </div>
         ''', unsafe_allow_html=True)
