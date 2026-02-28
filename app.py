@@ -524,20 +524,69 @@ with st.sidebar:
         icon_url = weather["icon"]
         if icon_url.startswith("//"):
             icon_url = "https:" + icon_url
+
+        # Dynamic colors based on values
+        temp = weather["temp_c"]
+        if temp <= 15:
+            temp_color = "#38bdf8"   # Cool blue
+        elif temp <= 25:
+            temp_color = "#22c55e"   # Pleasant green
+        elif temp <= 35:
+            temp_color = "#f59e0b"   # Warm amber
+        elif temp <= 42:
+            temp_color = "#f97316"   # Hot orange
+        else:
+            temp_color = "#ef4444"   # Extreme red
+
+        hum = weather["humidity"]
+        if hum <= 30:
+            hum_color = "#f59e0b"    # Dry amber
+        elif hum <= 60:
+            hum_color = "#22c55e"    # Comfortable green
+        elif hum <= 80:
+            hum_color = "#38bdf8"    # Humid blue
+        else:
+            hum_color = "#a855f7"    # Very humid purple
+
+        wind = weather["wind_kph"]
+        if wind <= 15:
+            wind_color = "#22c55e"   # Calm green
+        elif wind <= 30:
+            wind_color = "#38bdf8"   # Breezy blue
+        elif wind <= 50:
+            wind_color = "#f59e0b"   # Windy amber
+        else:
+            wind_color = "#ef4444"   # Strong red
+
+        uv = weather.get("uv") or 0
+        if uv <= 2:
+            uv_color, uv_label = "#22c55e", "Low"
+        elif uv <= 5:
+            uv_color, uv_label = "#f59e0b", "Moderate"
+        elif uv <= 7:
+            uv_color, uv_label = "#f97316", "High"
+        elif uv <= 10:
+            uv_color, uv_label = "#ef4444", "Very High"
+        else:
+            uv_color, uv_label = "#7f1d1d", "Extreme"
+
         st.markdown(f'''
         <div class="weather-card">
-            <div style="font-size:0.72rem; color:#475569; margin-bottom:0.2rem; font-weight:600;">🌤 LIVE WEATHER</div>
+            <div style="font-size:0.72rem; color:#a5b4fc; margin-bottom:0.2rem; font-weight:600;">🌤 LIVE WEATHER</div>
             <div class="weather-top">
                 <img src="{icon_url}" width="38" style="margin:-4px 0;">
-                <span class="weather-temp">{weather["temp_c"]:.0f}°C</span>
+                <span class="weather-temp" style="color:{temp_color} !important; text-shadow: 0 0 8px {temp_color}40;">{weather["temp_c"]:.0f}°C</span>
             </div>
             <div class="weather-cond">{weather["condition"]}</div>
             <div class="weather-details">
-                <div class="weather-detail-item"><div class="weather-detail-val">{weather["feels"]:.0f}°C</div>Feels like</div>
-                <div class="weather-detail-item"><div class="weather-detail-val">{weather["humidity"]}%</div>Humidity</div>
-                <div class="weather-detail-item"><div class="weather-detail-val">{weather["wind_kph"]:.0f} km/h</div>Wind</div>
+                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{temp_color} !important;">{weather["feels"]:.0f}°C</div>Feels like</div>
+                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{hum_color} !important;">{weather["humidity"]}%</div>Humidity</div>
+                <div class="weather-detail-item"><div class="weather-detail-val" style="color:{wind_color} !important;">{weather["wind_kph"]:.0f} km/h</div>Wind</div>
             </div>
-            <span class="aqi-badge" style="background:{weather['aqi_color']}20; color:{weather['aqi_color']};">AQI: {weather['aqi_label']}</span>
+            <div style="display:flex; gap:0.4rem; justify-content:center; flex-wrap:wrap; margin-top:0.5rem;">
+                <span class="aqi-badge" style="background:{weather['aqi_color']}20; color:{weather['aqi_color']};">AQI: {weather['aqi_label']}</span>
+                <span class="aqi-badge" style="background:{uv_color}20; color:{uv_color};">UV: {uv:.0f} ({uv_label})</span>
+            </div>
         </div>
         ''', unsafe_allow_html=True)
     else:
