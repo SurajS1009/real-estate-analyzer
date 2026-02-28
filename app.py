@@ -61,8 +61,8 @@ st.markdown("""
     section[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%) !important;
     }
-    section[data-testid="stSidebar"] * { color: #d1d5db !important; }
-    section[data-testid="stSidebar"] .stRadio label span { color: #c5cdd7 !important; font-weight: 500; }
+    section[data-testid="stSidebar"] * { color: #f0f0f0 !important; }
+    section[data-testid="stSidebar"] .stRadio label span { color: #f0f0f0 !important; font-weight: 500; }
     section[data-testid="stSidebar"] .stRadio label[data-checked="true"] span { color: #FF6B35 !important; font-weight: 700; }
     section[data-testid="stSidebar"] .stSelectbox label,
     section[data-testid="stSidebar"] .stMetric label,
@@ -76,14 +76,14 @@ st.markdown("""
         background: rgba(255,255,255,0.08) !important;
         border-color: rgba(255,255,255,0.18) !important;
     }
-    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #e0e0e0 !important; }
-    section[data-testid="stSidebar"] svg { color: #d1d5db !important; fill: #d1d5db !important; }
-    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #d1d5db !important; }
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #ffffff !important; }
+    section[data-testid="stSidebar"] svg { color: #f0f0f0 !important; fill: #f0f0f0 !important; }
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h4 { color: #ffffff !important; }
-    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #e0e0e0 !important; }
+    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #ffffff !important; }
 
     /* Feature Cards */
     .feat-card {
