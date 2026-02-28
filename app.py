@@ -110,21 +110,40 @@ st.markdown("""
         color: #ffffff !important;
     }
     /* Global popover dropdown fix (Streamlit renders popovers outside sidebar) */
+    [data-baseweb="popover"] {
+        background: #1e2a3a !important;
+    }
     [data-baseweb="popover"] [data-baseweb="menu"] {
         background: #1e2a3a !important;
     }
     [data-baseweb="popover"] [data-baseweb="menu"] li {
-        color: #f0f0f0 !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
     }
     [data-baseweb="popover"] [data-baseweb="menu"] li:hover,
     [data-baseweb="popover"] [data-baseweb="menu"] li[aria-selected="true"] {
-        background: rgba(255,107,53,0.2) !important;
+        background: rgba(255,107,53,0.25) !important;
         color: #ffffff !important;
     }
     [data-baseweb="popover"] input {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
         caret-color: #FF6B35 !important;
+        background: rgba(255,255,255,0.1) !important;
+    }
+    [data-baseweb="popover"] input::placeholder {
+        color: rgba(255,255,255,0.5) !important;
+        -webkit-text-fill-color: rgba(255,255,255,0.5) !important;
+    }
+    ul[role="listbox"] {
+        background: #1e2a3a !important;
+    }
+    ul[role="listbox"] li {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+    ul[role="listbox"] li:hover {
+        background: rgba(255,107,53,0.25) !important;
     }
     section[data-testid="stSidebar"] svg { color: #f0f0f0 !important; fill: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #f0f0f0 !important; }
@@ -146,12 +165,9 @@ st.markdown("""
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
     }
-    /* Global: any popover/dropdown search input */
-    [data-baseweb="popover"] *,
-    [data-baseweb="menu"] *,
-    ul[role="listbox"] * {
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+    /* Global: any popover/dropdown — dark bg so white text is readable */
+    [data-baseweb="popover"] [data-baseweb="input"] {
+        background: rgba(255,255,255,0.1) !important;
     }
 
     /* Feature Cards */
