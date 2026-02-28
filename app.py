@@ -114,6 +114,59 @@ st.markdown("""
     .stat-label { font-size: 0.78rem; color: #b0b8c4; margin-top: 0.15rem; font-weight: 500; }
 
     .stMetric { background: rgba(255,107,53,0.05); border-radius: 12px; padding: 0.8rem; }
+
+    /* ── Mobile / Tablet Responsive ── */
+    @media (max-width: 768px) {
+        .block-container { padding-top: 0.6rem; padding-left: 0.8rem; padding-right: 0.8rem; }
+
+        .hero-wrap { padding: 1.5rem 0.8rem 1.2rem; border-radius: 14px; margin-bottom: 1.2rem; }
+        .main-header { font-size: 1.6rem; }
+        .sub-header { font-size: 0.88rem; }
+        .hero-badge { font-size: 0.7rem; padding: 0.3rem 0.8rem; }
+
+        .stat-row { gap: 0.5rem; }
+        .stat-pill { min-width: 120px; padding: 0.5rem 0.8rem; }
+        .stat-val { font-size: 1.1rem; }
+        .stat-label { font-size: 0.7rem; }
+
+        .section-hdr { font-size: 1.1rem; }
+        .section-sub { font-size: 0.8rem; margin-bottom: 1rem; }
+
+        .feat-card { padding: 1.1rem 0.9rem 1rem; border-radius: 12px; }
+        .feat-icon { width: 42px; height: 42px; border-radius: 10px; font-size: 1.2rem; margin-bottom: 0.6rem; }
+        .feat-title { font-size: 0.88rem; }
+        .feat-desc { font-size: 0.76rem; }
+
+        .step-card { padding: 1.1rem; border-radius: 12px; }
+        .step-num { width: 28px; height: 28px; font-size: 0.8rem; border-radius: 8px; }
+        .step-title { font-size: 0.9rem; }
+        .step-desc { font-size: 0.8rem; }
+
+        /* Force Streamlit columns to stack vertically on mobile */
+        [data-testid="stHorizontalBlock"] {
+            flex-wrap: wrap !important;
+        }
+        [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+            min-width: 45% !important; flex: 1 1 45% !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-header { font-size: 1.35rem; }
+        .sub-header { font-size: 0.82rem; }
+        .hero-badge { font-size: 0.65rem; }
+
+        .stat-pill { min-width: 100px; padding: 0.4rem 0.6rem; }
+        .stat-val { font-size: 0.95rem; }
+
+        .feat-card { padding: 0.9rem 0.7rem; }
+        .feat-icon { width: 36px; height: 36px; font-size: 1rem; }
+
+        /* Stack to single column on very small screens */
+        [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+            min-width: 100% !important; flex: 1 1 100% !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
