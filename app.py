@@ -73,10 +73,59 @@ st.markdown("""
     section[data-testid="stSidebar"] hr { border-color: rgba(255,255,255,0.15) !important; }
     section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"],
     section[data-testid="stSidebar"] .stSelectbox [data-baseweb="popover"] {
-        background: rgba(255,255,255,0.08) !important;
-        border-color: rgba(255,255,255,0.18) !important;
+        background: rgba(255,255,255,0.12) !important;
+        border-color: rgba(255,255,255,0.25) !important;
     }
     section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #ffffff !important; }
+    /* Selectbox input & search field */
+    section[data-testid="stSidebar"] .stSelectbox input,
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="input"] input,
+    section[data-testid="stSidebar"] .stSelectbox [role="combobox"] input {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #FF6B35 !important;
+        background: transparent !important;
+    }
+    /* Selectbox placeholder text */
+    section[data-testid="stSidebar"] .stSelectbox input::placeholder {
+        color: rgba(255,255,255,0.5) !important;
+        -webkit-text-fill-color: rgba(255,255,255,0.5) !important;
+    }
+    /* Dropdown menu list */
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="menu"],
+    section[data-testid="stSidebar"] .stSelectbox ul[role="listbox"],
+    section[data-testid="stSidebar"] [data-baseweb="popover"] [data-baseweb="menu"] {
+        background: #1e2a3a !important;
+    }
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="menu"] li,
+    section[data-testid="stSidebar"] .stSelectbox ul[role="listbox"] li,
+    section[data-testid="stSidebar"] [data-baseweb="popover"] li {
+        color: #f0f0f0 !important;
+    }
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="menu"] li:hover,
+    section[data-testid="stSidebar"] .stSelectbox ul[role="listbox"] li:hover,
+    section[data-testid="stSidebar"] [data-baseweb="popover"] li:hover,
+    section[data-testid="stSidebar"] [data-baseweb="popover"] li[aria-selected="true"] {
+        background: rgba(255,107,53,0.2) !important;
+        color: #ffffff !important;
+    }
+    /* Global popover dropdown fix (Streamlit renders popovers outside sidebar) */
+    [data-baseweb="popover"] [data-baseweb="menu"] {
+        background: #1e2a3a !important;
+    }
+    [data-baseweb="popover"] [data-baseweb="menu"] li {
+        color: #f0f0f0 !important;
+    }
+    [data-baseweb="popover"] [data-baseweb="menu"] li:hover,
+    [data-baseweb="popover"] [data-baseweb="menu"] li[aria-selected="true"] {
+        background: rgba(255,107,53,0.2) !important;
+        color: #ffffff !important;
+    }
+    [data-baseweb="popover"] input {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #FF6B35 !important;
+    }
     section[data-testid="stSidebar"] svg { color: #f0f0f0 !important; fill: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
