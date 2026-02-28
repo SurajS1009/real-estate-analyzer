@@ -1,4 +1,4 @@
-# 🏠 India Land Rate Analyzer & Predictor
+# 🏠 PlotGuide – India Land Rate Analyzer & Predictor
 
 A comprehensive Streamlit web application for understanding land rates across India, predicting future prices, and assessing legal & environmental risks.
 

@@ -1,5 +1,5 @@
 ﻿"""
-India Land Rate Analyzer & Predictor
+PlotGuide – India Land Rate Analyzer & Predictor
 ==========================================
 Comprehensive tool covering ALL 28 States + 8 Union Territories.
 Built with Streamlit, Plotly, scikit-learn.
@@ -26,7 +26,7 @@ from prediction_engine import (
 
 # ─── Page Config ───
 st.set_page_config(
-    page_title="India Land Rate Analyzer",
+    page_title="PlotGuide",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -565,7 +565,7 @@ if page == "Home":
     # ── Hero Section ──
     st.markdown(f'''
     <div class="hero-wrap">
-        <p class="main-header">India Land Rate Analyzer</p>
+        <p class="main-header">PlotGuide</p>
         <p class="sub-header">Intelligent land rate insights, predictions &amp; risk analysis across 200+ Indian cities</p>
         <span class="hero-badge">✦ Powered by Amonra Scarab &nbsp;·&nbsp; {total_locs} Locations &nbsp;·&nbsp; {total_states} States & UTs</span>
     </div>
@@ -1349,7 +1349,7 @@ elif page == "Area Risk Alerts":
 st.divider()
 st.markdown("""
 <div style='text-align:center; color:#666; font-size:0.82rem; padding: 0.5rem 0;'>
-    🇮🇳 India Land Rate Analyzer  ·  200+ locations across 28 States & 8 Union Territories<br>
+    🇮🇳 PlotGuide  ·  200+ locations across 28 States & 8 Union Territories<br>
     ⚠️ Data is simulated for educational purposes. Consult local experts for actual investment decisions.<br>
     Built with ❤️ using Streamlit · Plotly · scikit-learn
 </div>
