@@ -110,6 +110,12 @@ st.markdown("""
         color: #ffffff !important;
     }
     /* Global popover dropdown fix (Streamlit renders popovers outside sidebar) */
+    [data-baseweb="popover"] {
+        background: #1e2a3a !important;
+    }
+    [data-baseweb="popover"] > div {
+        background: #1e2a3a !important;
+    }
     [data-baseweb="popover"] [data-baseweb="menu"] {
         background: #1e2a3a !important;
     }
@@ -121,10 +127,24 @@ st.markdown("""
         background: rgba(255,107,53,0.2) !important;
         color: #ffffff !important;
     }
-    [data-baseweb="popover"] input {
+    /* Popover search input — dark bg + visible text */
+    [data-baseweb="popover"] input,
+    [data-baseweb="popover"] [data-baseweb="input"],
+    [data-baseweb="popover"] [data-baseweb="input"] input {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
         caret-color: #FF6B35 !important;
+        background: #253347 !important;
+        border-color: rgba(255,255,255,0.2) !important;
+    }
+    [data-baseweb="popover"] input::placeholder {
+        color: rgba(255,255,255,0.45) !important;
+        -webkit-text-fill-color: rgba(255,255,255,0.45) !important;
+    }
+    /* Also target the list wrapper inside popover */
+    [data-baseweb="popover"] ul,
+    [data-baseweb="popover"] [role="listbox"] {
+        background: #1e2a3a !important;
     }
     section[data-testid="stSidebar"] svg { color: #f0f0f0 !important; fill: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #f0f0f0 !important; }
