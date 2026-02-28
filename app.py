@@ -1350,7 +1350,6 @@ st.divider()
 st.markdown("""
 <div style='text-align:center; color:#666; font-size:0.82rem; padding: 0.5rem 0;'>
     🇮🇳 PlotGuide  ·  200+ locations across 28 States & 8 Union Territories<br>
-    ⚠️ Data is simulated for educational purposes. Consult local experts for actual investment decisions.<br>
-    Built with ❤️ using Streamlit · Plotly · scikit-learn
+    ⚠️ Data is simulated for educational purposes. Consult local experts for actual investment decisions.
 </div>
 """, unsafe_allow_html=True)
