@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+import requests
 from streamlit_option_menu import option_menu
 
 from data_module import (
@@ -115,6 +116,19 @@ st.markdown("""
 
     .stMetric { background: rgba(255,107,53,0.05); border-radius: 12px; padding: 0.8rem; }
 
+    /* Weather Widget */
+    .weather-card {
+        background: linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(56,189,248,0.06) 100%);
+        border: 1px solid rgba(14,165,233,0.2); border-radius: 14px;
+        padding: 0.9rem 1rem; text-align: center; margin-bottom: 0.5rem;
+    }
+    .weather-top { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.3rem; }
+    .weather-temp { font-size: 1.6rem; font-weight: 800; color: #0ea5e9; }
+    .weather-cond { font-size: 0.82rem; color: #1a1a2e; font-weight: 500; margin-bottom: 0.4rem; }
+    .weather-details { display: flex; justify-content: space-around; font-size: 0.72rem; color: #475569; }
+    .weather-detail-item { text-align: center; }
+    .weather-detail-val { font-weight: 700; color: #1a1a2e; font-size: 0.78rem; }
+
     /* ── Mobile / Tablet Responsive ── */
     @media (max-width: 768px) {
         .block-container { padding-top: 0.6rem; padding-left: 0.8rem; padding-right: 0.8rem; }
@@ -181,6 +195,33 @@ def load_dev_factors():
 
 df = load_data()
 dev_factors = load_dev_factors()
+
+# ─── Weather Helper ───
+WEATHER_API_KEY = "984134a80ec345c1a63120041251209"
+
+@st.cache_data(ttl=600)  # cache 10 minutes
+def fetch_weather(city: str):
+    """Fetch current weather from WeatherAPI.com. Returns dict or None."""
+    try:
+        url = f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={city},India&aqi=no"
+        resp = requests.get(url, timeout=5)
+        if resp.status_code == 200:
+            data = resp.json()
+            c = data["current"]
+            loc = data["location"]
+            return {
+                "temp_c": c["temp_c"],
+                "feels": c["feelslike_c"],
+                "humidity": c["humidity"],
+                "wind_kph": c["wind_kph"],
+                "condition": c["condition"]["text"],
+                "icon": c["condition"]["icon"],
+                "city": loc["name"],
+                "region": loc["region"],
+            }
+    except Exception:
+        pass
+    return None
 
 # ─── Sidebar ───
 with st.sidebar:
@@ -250,7 +291,30 @@ with st.sidebar:
     else:
         st.caption("ℹ️ Area details not available for this city.")
 
+    # ─── Live Weather ───
     st.divider()
+    weather = fetch_weather(selected_city)
+    if weather:
+        icon_url = weather["icon"]
+        if icon_url.startswith("//"):
+            icon_url = "https:" + icon_url
+        st.markdown(f'''
+        <div class="weather-card">
+            <div style="font-size:0.72rem; color:#475569; margin-bottom:0.2rem; font-weight:600;">🌤 LIVE WEATHER</div>
+            <div class="weather-top">
+                <img src="{icon_url}" width="38" style="margin:-4px 0;">
+                <span class="weather-temp">{weather["temp_c"]:.0f}°C</span>
+            </div>
+            <div class="weather-cond">{weather["condition"]}</div>
+            <div class="weather-details">
+                <div class="weather-detail-item"><div class="weather-detail-val">{weather["feels"]:.0f}°C</div>Feels like</div>
+                <div class="weather-detail-item"><div class="weather-detail-val">{weather["humidity"]}%</div>Humidity</div>
+                <div class="weather-detail-item"><div class="weather-detail-val">{weather["wind_kph"]:.0f} km/h</div>Wind</div>
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
+    else:
+        st.caption("⛅ Weather data unavailable.")
     st.markdown("#### 📊 Quick Stats")
     st.metric("Locations", f"{df['Location'].nunique()}")
     st.metric("States & UTs", f"{df['State'].nunique()}")
