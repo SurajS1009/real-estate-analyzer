@@ -135,15 +135,22 @@ st.markdown("""
         color: rgba(255,255,255,0.5) !important;
         -webkit-text-fill-color: rgba(255,255,255,0.5) !important;
     }
-    ul[role="listbox"] {
+    /* Sidebar-scoped listbox */
+    section[data-testid="stSidebar"] ul[role="listbox"] {
         background: #1e2a3a !important;
     }
-    ul[role="listbox"] li {
+    section[data-testid="stSidebar"] ul[role="listbox"] li {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
     }
-    ul[role="listbox"] li:hover {
+    section[data-testid="stSidebar"] ul[role="listbox"] li:hover {
         background: rgba(255,107,53,0.25) !important;
+    }
+    /* Main area menus: dark text on light bg */
+    .main ul[role="listbox"] li,
+    .main [data-baseweb="menu"] li {
+        color: #1a1a2e !important;
+        -webkit-text-fill-color: #1a1a2e !important;
     }
     section[data-testid="stSidebar"] svg { color: #f0f0f0 !important; fill: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #f0f0f0 !important; }
@@ -152,23 +159,13 @@ st.markdown("""
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h4 { color: #ffffff !important; }
     section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #ffffff !important; }
-    /* Nuclear override: ALL sidebar text white */
+    /* Sidebar-only text override */
     section[data-testid="stSidebar"] span,
     section[data-testid="stSidebar"] p,
     section[data-testid="stSidebar"] div,
     section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] input,
-    section[data-testid="stSidebar"] a,
-    section[data-testid="stSidebar"] li,
-    section[data-testid="stSidebar"] option,
-    section[data-testid="stSidebar"] [class*="css"] {
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
-    }
-    /* Global: any popover/dropdown — dark bg so white text is readable */
-    [data-baseweb="popover"] [data-baseweb="input"] {
-        background: rgba(255,255,255,0.1) !important;
-    }
+    section[data-testid="stSidebar"] a { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    section[data-testid="stSidebar"] input { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
 
     /* Feature Cards */
     .feat-card {
