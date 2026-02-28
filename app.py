@@ -200,7 +200,7 @@ if page == "🏠 Home":
     <div class="hero-wrap">
         <p class="main-header">India Land Rate Analyzer</p>
         <p class="sub-header">Intelligent land rate insights, predictions &amp; risk analysis across 200+ Indian cities</p>
-        <span class="hero-badge">✦ Powered by Machine Learning &nbsp;·&nbsp; {total_locs} Locations &nbsp;·&nbsp; {total_states} States & UTs</span>
+        <span class="hero-badge">✦ Powered by Amonra Scarab &nbsp;·&nbsp; {total_locs} Locations &nbsp;·&nbsp; {total_states} States & UTs</span>
     </div>
     ''', unsafe_allow_html=True)
 
