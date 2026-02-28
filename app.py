@@ -484,15 +484,16 @@ with st.sidebar:
         default_index=nav_default,
         key=f"nav_menu_{selected_state}_{selected_city}" if location_changed else "nav_menu",
         styles={
-            "container": {"padding": "0!important", "background-color": "transparent"},
+            "container": {"padding": "0!important", "background-color": "#1a1a2e !important"},
             "icon": {"color": "#FF6B35", "font-size": "16px"},
             "nav-link": {
                 "font-size": "14px", "text-align": "left", "margin": "2px 0",
-                "padding": "8px 12px", "color": "#f0f0f0", "border-radius": "8px",
-                "--hover-color": "rgba(255,107,53,0.12)",
+                "padding": "8px 12px", "color": "#ffffff", "border-radius": "8px",
+                "background-color": "transparent",
+                "--hover-color": "rgba(255,107,53,0.15)",
             },
             "nav-link-selected": {
-                "background-color": "rgba(255,107,53,0.12)",
+                "background-color": "rgba(255,107,53,0.15)",
                 "color": "#FF6B35", "font-weight": "700",
             },
         },
