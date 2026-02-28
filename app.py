@@ -57,39 +57,33 @@ st.markdown("""
         padding: 0.35rem 1rem; border-radius: 20px; letter-spacing: 0.3px;
     }
 
-    /* Sidebar – Light Theme (default) */
+    /* Sidebar – Always dark for readability in any theme */
     section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%) !important;
     }
-    section[data-testid="stSidebar"] * { color: #1a1a2e !important; }
-    section[data-testid="stSidebar"] .stRadio label span { color: #2c3e50 !important; font-weight: 500; }
+    section[data-testid="stSidebar"] * { color: #d1d5db !important; }
+    section[data-testid="stSidebar"] .stRadio label span { color: #c5cdd7 !important; font-weight: 500; }
     section[data-testid="stSidebar"] .stRadio label[data-checked="true"] span { color: #FF6B35 !important; font-weight: 700; }
     section[data-testid="stSidebar"] .stSelectbox label,
     section[data-testid="stSidebar"] .stMetric label,
-    section[data-testid="stSidebar"] h4, section[data-testid="stSidebar"] h2 { color: #1a1a2e !important; }
+    section[data-testid="stSidebar"] h4,
+    section[data-testid="stSidebar"] h2 { color: #ffffff !important; }
     section[data-testid="stSidebar"] .stMetric [data-testid="stMetricValue"] { color: #FF6B35 !important; }
-    section[data-testid="stSidebar"] hr { border-color: #dee2e6 !important; }
-
-    /* Sidebar – Dark Theme Override */
-    @media (prefers-color-scheme: dark) {
-        section[data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%) !important;
-        }
-        section[data-testid="stSidebar"] * { color: #d1d5db !important; }
-        section[data-testid="stSidebar"] .stRadio label span { color: #c5cdd7 !important; font-weight: 500; }
-        section[data-testid="stSidebar"] .stRadio label[data-checked="true"] span { color: #FF6B35 !important; font-weight: 700; }
-        section[data-testid="stSidebar"] .stSelectbox label,
-        section[data-testid="stSidebar"] .stMetric label,
-        section[data-testid="stSidebar"] h4, section[data-testid="stSidebar"] h2 { color: #ffffff !important; }
-        section[data-testid="stSidebar"] .stMetric [data-testid="stMetricValue"] { color: #FF6B35 !important; }
-        section[data-testid="stSidebar"] hr { border-color: rgba(255,255,255,0.15) !important; }
-        section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.15) !important; }
-        section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #e0e0e0 !important; }
-        section[data-testid="stSidebar"] .weather-cond { color: #c5cdd7 !important; }
-        section[data-testid="stSidebar"] .weather-details { color: #9ca3af !important; }
-        section[data-testid="stSidebar"] .weather-detail-val { color: #e0e0e0 !important; }
-        section[data-testid="stSidebar"] .stMetric { background: rgba(255,107,53,0.1) !important; }
+    section[data-testid="stSidebar"] .stMetric { background: rgba(255,107,53,0.1) !important; }
+    section[data-testid="stSidebar"] hr { border-color: rgba(255,255,255,0.15) !important; }
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"],
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="popover"] {
+        background: rgba(255,255,255,0.08) !important;
+        border-color: rgba(255,255,255,0.18) !important;
     }
+    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #e0e0e0 !important; }
+    section[data-testid="stSidebar"] svg { color: #d1d5db !important; fill: #d1d5db !important; }
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #d1d5db !important; }
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h4 { color: #ffffff !important; }
+    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #e0e0e0 !important; }
 
     /* Feature Cards */
     .feat-card {
@@ -139,16 +133,16 @@ st.markdown("""
 
     /* Weather Widget */
     .weather-card {
-        background: linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(56,189,248,0.06) 100%);
-        border: 1px solid rgba(14,165,233,0.2); border-radius: 14px;
+        background: linear-gradient(135deg, rgba(14,165,233,0.15) 0%, rgba(56,189,248,0.08) 100%);
+        border: 1px solid rgba(14,165,233,0.25); border-radius: 14px;
         padding: 0.9rem 1rem; text-align: center; margin-bottom: 0.5rem;
     }
     .weather-top { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.3rem; }
-    .weather-temp { font-size: 1.6rem; font-weight: 800; color: #0ea5e9; }
-    .weather-cond { font-size: 0.82rem; color: #1a1a2e; font-weight: 500; margin-bottom: 0.4rem; }
-    .weather-details { display: flex; justify-content: space-around; font-size: 0.72rem; color: #475569; }
+    .weather-temp { font-size: 1.6rem; font-weight: 800; color: #38bdf8 !important; }
+    .weather-cond { font-size: 0.82rem; color: #c5cdd7 !important; font-weight: 500; margin-bottom: 0.4rem; }
+    .weather-details { display: flex; justify-content: space-around; font-size: 0.72rem; color: #9ca3af !important; }
     .weather-detail-item { text-align: center; }
-    .weather-detail-val { font-weight: 700; color: #1a1a2e; font-size: 0.78rem; }
+    .weather-detail-val { font-weight: 700; color: #e0e0e0 !important; font-size: 0.78rem; }
     .aqi-badge {
         display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem;
         border-radius: 6px; margin-top: 0.4rem; letter-spacing: 0.3px;
