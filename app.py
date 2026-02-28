@@ -57,7 +57,7 @@ st.markdown("""
         padding: 0.35rem 1rem; border-radius: 20px; letter-spacing: 0.3px;
     }
 
-    /* Sidebar */
+    /* Sidebar – Light Theme (default) */
     section[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
     }
@@ -69,6 +69,27 @@ st.markdown("""
     section[data-testid="stSidebar"] h4, section[data-testid="stSidebar"] h2 { color: #1a1a2e !important; }
     section[data-testid="stSidebar"] .stMetric [data-testid="stMetricValue"] { color: #FF6B35 !important; }
     section[data-testid="stSidebar"] hr { border-color: #dee2e6 !important; }
+
+    /* Sidebar – Dark Theme Override */
+    @media (prefers-color-scheme: dark) {
+        section[data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%) !important;
+        }
+        section[data-testid="stSidebar"] * { color: #d1d5db !important; }
+        section[data-testid="stSidebar"] .stRadio label span { color: #c5cdd7 !important; font-weight: 500; }
+        section[data-testid="stSidebar"] .stRadio label[data-checked="true"] span { color: #FF6B35 !important; font-weight: 700; }
+        section[data-testid="stSidebar"] .stSelectbox label,
+        section[data-testid="stSidebar"] .stMetric label,
+        section[data-testid="stSidebar"] h4, section[data-testid="stSidebar"] h2 { color: #ffffff !important; }
+        section[data-testid="stSidebar"] .stMetric [data-testid="stMetricValue"] { color: #FF6B35 !important; }
+        section[data-testid="stSidebar"] hr { border-color: rgba(255,255,255,0.15) !important; }
+        section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.15) !important; }
+        section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #e0e0e0 !important; }
+        section[data-testid="stSidebar"] .weather-cond { color: #c5cdd7 !important; }
+        section[data-testid="stSidebar"] .weather-details { color: #9ca3af !important; }
+        section[data-testid="stSidebar"] .weather-detail-val { color: #e0e0e0 !important; }
+        section[data-testid="stSidebar"] .stMetric { background: rgba(255,107,53,0.1) !important; }
+    }
 
     /* Feature Cards */
     .feat-card {
