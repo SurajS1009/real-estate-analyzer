@@ -110,30 +110,49 @@ st.markdown("""
         color: #ffffff !important;
     }
     /* Global popover dropdown fix (Streamlit renders popovers outside sidebar) */
-    [data-baseweb="popover"] {
+    [data-baseweb="popover"],
+    [data-baseweb="popover"] > div,
+    [data-baseweb="popover"] [data-baseweb="menu"],
+    body [data-baseweb="popover"],
+    div[data-baseweb="popover"] {
         background: #1e2a3a !important;
+        background-color: #1e2a3a !important;
     }
-    [data-baseweb="popover"] [data-baseweb="menu"] {
-        background: #1e2a3a !important;
-    }
-    [data-baseweb="popover"] [data-baseweb="menu"] li {
+    [data-baseweb="popover"] [data-baseweb="menu"] li,
+    [data-baseweb="popover"] ul li,
+    [data-baseweb="popover"] [role="option"] {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
+        background-color: #1e2a3a !important;
     }
     [data-baseweb="popover"] [data-baseweb="menu"] li:hover,
-    [data-baseweb="popover"] [data-baseweb="menu"] li[aria-selected="true"] {
+    [data-baseweb="popover"] [role="option"]:hover,
+    [data-baseweb="popover"] li[aria-selected="true"] {
         background: rgba(255,107,53,0.25) !important;
+        background-color: rgba(255,107,53,0.25) !important;
         color: #ffffff !important;
     }
-    [data-baseweb="popover"] input {
+    [data-baseweb="popover"] input,
+    [data-baseweb="popover"] [data-baseweb="input"],
+    [data-baseweb="popover"] [data-baseweb="input"] input,
+    [data-baseweb="popover"] [role="combobox"],
+    [data-baseweb="popover"] [role="combobox"] input {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
         caret-color: #FF6B35 !important;
-        background: rgba(255,255,255,0.1) !important;
+        background: #263248 !important;
+        background-color: #263248 !important;
     }
-    [data-baseweb="popover"] input::placeholder {
+    [data-baseweb="popover"] input::placeholder,
+    [data-baseweb="popover"] [data-baseweb="input"] input::placeholder {
         color: rgba(255,255,255,0.5) !important;
         -webkit-text-fill-color: rgba(255,255,255,0.5) !important;
+    }
+    /* "No results" message in popover */
+    [data-baseweb="popover"] [data-baseweb="menu"] div,
+    [data-baseweb="popover"] [role="listbox"] ~ div {
+        color: rgba(255,255,255,0.6) !important;
+        -webkit-text-fill-color: rgba(255,255,255,0.6) !important;
     }
     /* Sidebar-scoped listbox */
     section[data-testid="stSidebar"] ul[role="listbox"] {
