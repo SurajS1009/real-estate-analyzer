@@ -128,6 +128,29 @@ st.markdown("""
     .weather-details { display: flex; justify-content: space-around; font-size: 0.72rem; color: #475569; }
     .weather-detail-item { text-align: center; }
     .weather-detail-val { font-weight: 700; color: #1a1a2e; font-size: 0.78rem; }
+    .aqi-badge {
+        display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem;
+        border-radius: 6px; margin-top: 0.4rem; letter-spacing: 0.3px;
+    }
+
+    /* Climate Card */
+    .climate-card {
+        background: rgba(255,255,255,0.035); padding: 1.2rem 1.4rem; border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.07);
+    }
+    .climate-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.8rem;
+    }
+    .climate-item-label { font-size: 0.72rem; color: #8b95a5; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+    .climate-item-val { font-size: 0.95rem; font-weight: 700; color: #e0e0e0; margin-top: 0.1rem; }
+    .climate-note {
+        margin-top: 0.9rem; padding: 0.7rem 1rem; border-radius: 10px;
+        background: rgba(255,107,53,0.06); border-left: 3px solid #FF6B35;
+        font-size: 0.82rem; color: #c5cdd7; line-height: 1.5;
+    }
+    @media (max-width: 480px) {
+        .climate-grid { grid-template-columns: 1fr; }
+    }
 
     /* ── Mobile / Tablet Responsive ── */
     @media (max-width: 768px) {
@@ -201,14 +224,22 @@ WEATHER_API_KEY = "984134a80ec345c1a63120041251209"
 
 @st.cache_data(ttl=600)  # cache 10 minutes
 def fetch_weather(city: str):
-    """Fetch current weather from WeatherAPI.com. Returns dict or None."""
+    """Fetch current weather + AQI from WeatherAPI.com. Returns dict or None."""
     try:
-        url = f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={city},India&aqi=no"
+        url = f"https://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={city},India&aqi=yes"
         resp = requests.get(url, timeout=5)
         if resp.status_code == 200:
             data = resp.json()
             c = data["current"]
             loc = data["location"]
+            # AQI data (US EPA Index: 1=Good, 2=Moderate, 3=Unhealthy-SG, 4=Unhealthy, 5=VeryUnhealthy, 6=Hazardous)
+            aqi_raw = c.get("air_quality", {})
+            epa = aqi_raw.get("us-epa-index", None)
+            pm25 = aqi_raw.get("pm2_5", None)
+            pm10 = aqi_raw.get("pm10", None)
+            aqi_labels = {1: ("Good", "#22c55e"), 2: ("Moderate", "#eab308"), 3: ("Unhealthy (SG)", "#f97316"),
+                          4: ("Unhealthy", "#ef4444"), 5: ("Very Unhealthy", "#a855f7"), 6: ("Hazardous", "#7f1d1d")}
+            aqi_label, aqi_color = aqi_labels.get(epa, ("N/A", "#94a3b8"))
             return {
                 "temp_c": c["temp_c"],
                 "feels": c["feelslike_c"],
@@ -216,12 +247,62 @@ def fetch_weather(city: str):
                 "wind_kph": c["wind_kph"],
                 "condition": c["condition"]["text"],
                 "icon": c["condition"]["icon"],
+                "uv": c.get("uv", None),
                 "city": loc["name"],
                 "region": loc["region"],
+                "aqi_epa": epa,
+                "aqi_label": aqi_label,
+                "aqi_color": aqi_color,
+                "pm25": pm25,
+                "pm10": pm10,
             }
     except Exception:
         pass
     return None
+
+# ─── Climate Summary Data ───
+CITY_CLIMATE = {
+    # City: (climate_type, avg_temp_c, avg_rainfall_mm, best_months, worst_months, humidity_range, notes)
+    "Mumbai": ("Tropical Wet", 27.2, 2167, "Nov–Feb", "Jun–Sep", "60–90%", "Heavy monsoon; coastal humidity year-round; pleasant winters."),
+    "Delhi": ("Humid Subtropical", 25.0, 797, "Oct–Mar", "May–Jul", "30–80%", "Extreme summers (45°C+); cold winters; monsoon Jul–Sep; AQI concerns in winter."),
+    "Bangalore": ("Tropical Savanna", 23.5, 970, "Sep–Feb", "Mar–May", "45–75%", "Pleasant year-round; moderate monsoon; known as Garden City."),
+    "Hyderabad": ("Tropical Wet & Dry", 26.6, 812, "Oct–Feb", "Apr–Jun", "40–75%", "Hot summers; moderate monsoon; pleasant winters."),
+    "Chennai": ("Tropical Wet & Dry", 28.6, 1400, "Dec–Feb", "Apr–Jun", "60–85%", "Northeast monsoon Oct–Dec; hot & humid summers; cyclone-prone."),
+    "Kolkata": ("Tropical Wet & Dry", 26.8, 1582, "Oct–Mar", "May–Jul", "55–90%", "Hot & humid; heavy monsoon; pleasant winters; occasional cyclones."),
+    "Pune": ("Tropical Wet & Dry", 25.0, 722, "Oct–Feb", "Apr–Jun", "35–75%", "Pleasant climate; moderate monsoon; cooler than Mumbai."),
+    "Ahmedabad": ("Hot Semi-arid", 27.0, 782, "Nov–Feb", "Apr–Jun", "25–70%", "Very hot summers (45°C+); low rainfall; dry & dusty."),
+    "Jaipur": ("Hot Semi-arid", 25.5, 650, "Oct–Mar", "May–Jul", "25–65%", "Desert proximity; extreme summer heat; chilly winters; limited rainfall."),
+    "Lucknow": ("Humid Subtropical", 25.8, 896, "Oct–Mar", "May–Jul", "35–80%", "Hot summers; foggy winters; monsoon Jul–Sep."),
+    "Chandigarh": ("Humid Subtropical", 23.5, 1110, "Oct–Mar", "May–Jul", "30–75%", "Planned city; cold winters; hot summers; good monsoon."),
+    "Bhopal": ("Humid Subtropical", 25.0, 1146, "Oct–Feb", "Apr–Jun", "30–75%", "Lake city; moderate climate; good monsoon."),
+    "Indore": ("Humid Subtropical", 24.5, 944, "Oct–Feb", "Apr–Jun", "30–70%", "Cleanest city; pleasant climate; moderate monsoon."),
+    "Nagpur": ("Tropical Wet & Dry", 26.0, 1093, "Oct–Feb", "Apr–Jun", "30–75%", "Orange city; very hot summers; central India heat."),
+    "Kochi": ("Tropical Monsoon", 27.0, 3005, "Dec–Feb", "Jun–Aug", "65–90%", "Heavy rainfall; backwater city; high humidity year-round."),
+    "Thiruvananthapuram": ("Tropical Monsoon", 27.5, 1827, "Dec–Feb", "Jun–Aug", "70–90%", "Coastal; heavy monsoon; warm throughout."),
+    "Visakhapatnam": ("Tropical Wet & Dry", 27.5, 1118, "Nov–Feb", "Apr–Jun", "55–85%", "Coastal; cyclone-prone; pleasant winters."),
+    "Goa": ("Tropical Monsoon", 27.0, 2932, "Nov–Feb", "Jun–Sep", "60–90%", "Beach climate; heavy monsoon; tourist season Oct–Mar."),
+    "Coimbatore": ("Tropical Wet & Dry", 24.5, 700, "Nov–Feb", "Apr–May", "45–70%", "Manchester of South India; pleasant moderate climate."),
+    "Vadodara": ("Hot Semi-arid", 27.0, 930, "Nov–Feb", "Apr–Jun", "30–75%", "Hot summers; moderate monsoon; cultural city."),
+    "Surat": ("Tropical Wet & Dry", 27.5, 1143, "Nov–Feb", "Apr–Jun", "40–80%", "Diamond city; hot & humid; good monsoon."),
+    "Patna": ("Humid Subtropical", 26.0, 1089, "Oct–Mar", "May–Jul", "40–85%", "Ganges plain; hot summers; flood-prone monsoon."),
+    "Ranchi": ("Humid Subtropical", 23.0, 1430, "Oct–Feb", "May–Jul", "40–80%", "Plateau city; pleasant compared to plains; good monsoon."),
+    "Dehradun": ("Humid Subtropical", 21.0, 2073, "Sep–Nov", "Jun–Aug", "45–85%", "Doon Valley; pleasant; heavy monsoon; cool winters."),
+    "Shimla": ("Subtropical Highland", 13.0, 1577, "Mar–Jun", "Jul–Sep", "50–85%", "Hill station; snowfall in winter; pleasant summers."),
+    "Guwahati": ("Humid Subtropical", 24.0, 1722, "Oct–Mar", "May–Jul", "60–90%", "Northeast gateway; heavy monsoon; warm & humid."),
+    "Bhubaneswar": ("Tropical Savanna", 27.0, 1502, "Oct–Feb", "Apr–Jun", "50–85%", "Temple city; cyclone-prone; hot & humid summers."),
+    "Mysore": ("Tropical Savanna", 24.0, 798, "Sep–Feb", "Mar–May", "45–75%", "Heritage city; pleasant climate year-round."),
+    "Amritsar": ("Humid Subtropical", 23.5, 680, "Oct–Mar", "May–Jul", "30–75%", "Hot summers; cold winters (near 0°C); moderate rainfall."),
+    "Jodhpur": ("Hot Desert", 26.5, 360, "Oct–Mar", "May–Jul", "20–55%", "Blue city; Thar desert edge; extreme heat; very low rainfall."),
+    "Udaipur": ("Hot Semi-arid", 25.0, 637, "Oct–Mar", "May–Jun", "25–65%", "Lake city; moderate Rajasthan climate; tourist hub."),
+    "Varanasi": ("Humid Subtropical", 26.0, 1030, "Oct–Mar", "May–Jul", "35–80%", "Ganges city; very hot summers; monsoon flooding."),
+    "Agra": ("Humid Subtropical", 25.5, 687, "Oct–Mar", "May–Jul", "30–75%", "Taj Mahal city; extreme summers; dry heat."),
+    "Noida": ("Humid Subtropical", 25.0, 797, "Oct–Mar", "May–Jul", "30–80%", "NCR satellite; same as Delhi climate; AQI concerns."),
+    "Gurugram": ("Humid Subtropical", 25.0, 797, "Oct–Mar", "May–Jul", "30–80%", "NCR tech hub; same as Delhi climate; AQI issues."),
+    "Faridabad": ("Humid Subtropical", 25.0, 797, "Oct–Mar", "May–Jul", "30–80%", "NCR industrial; Delhi-like climate."),
+    "Ghaziabad": ("Humid Subtropical", 25.0, 797, "Oct–Mar", "May–Jul", "30–80%", "NCR satellite; follows Delhi weather patterns."),
+    "Thane": ("Tropical Wet", 27.0, 2500, "Nov–Feb", "Jun–Sep", "60–90%", "Mumbai satellite; heavy monsoon; lake city."),
+    "Navi Mumbai": ("Tropical Wet", 27.0, 2300, "Nov–Feb", "Jun–Sep", "60–90%", "Planned city; similar to Mumbai; coastal."),
+}
 
 # ─── Sidebar ───
 with st.sidebar:
@@ -323,6 +404,7 @@ with st.sidebar:
                 <div class="weather-detail-item"><div class="weather-detail-val">{weather["humidity"]}%</div>Humidity</div>
                 <div class="weather-detail-item"><div class="weather-detail-val">{weather["wind_kph"]:.0f} km/h</div>Wind</div>
             </div>
+            <span class="aqi-badge" style="background:{weather['aqi_color']}20; color:{weather['aqi_color']};">AQI: {weather['aqi_label']}</span>
         </div>
         ''', unsafe_allow_html=True)
     else:
@@ -586,6 +668,39 @@ elif page == "Location Overview":
             with fc3:
                 st.info(f"**Key Drivers:** {', '.join(forecast['key_drivers'])}")
                 st.info(f"**Forecast:** {forecast['forecast']}")
+
+        # ── Climate Summary ──
+        climate = CITY_CLIMATE.get(selected_city)
+        if climate:
+            c_type, c_avg_temp, c_rain, c_best, c_worst, c_humidity, c_note = climate
+            st.divider()
+            st.subheader("🌦️ Climate & Environment")
+
+            clim_html = f'''
+            <div class="climate-card">
+                <div class="climate-grid">
+                    <div><div class="climate-item-label">🌡️ Climate Type</div><div class="climate-item-val">{c_type}</div></div>
+                    <div><div class="climate-item-label">🌡️ Avg Temperature</div><div class="climate-item-val">{c_avg_temp}°C</div></div>
+                    <div><div class="climate-item-label">🌧️ Avg Annual Rainfall</div><div class="climate-item-val">{c_rain:,} mm</div></div>
+                    <div><div class="climate-item-label">💧 Humidity Range</div><div class="climate-item-val">{c_humidity}</div></div>
+                    <div><div class="climate-item-label">☀️ Best Months</div><div class="climate-item-val">{c_best}</div></div>
+                    <div><div class="climate-item-label">⛈️ Tough Months</div><div class="climate-item-val">{c_worst}</div></div>
+                </div>
+                <div class="climate-note">📝 {c_note}</div>
+            </div>
+            '''
+            st.markdown(clim_html, unsafe_allow_html=True)
+
+            # Show live AQI detail if available
+            w = fetch_weather(selected_city)
+            if w and w.get("aqi_epa"):
+                aqi_cols = st.columns(3)
+                with aqi_cols[0]:
+                    st.metric("🌫️ Air Quality", w["aqi_label"])
+                with aqi_cols[1]:
+                    st.metric("PM2.5", f"{w['pm25']:.1f} µg/m³" if w["pm25"] else "N/A")
+                with aqi_cols[2]:
+                    st.metric("PM10", f"{w['pm10']:.1f} µg/m³" if w["pm10"] else "N/A")
     else:
         st.warning("No data available for this location.")
 
