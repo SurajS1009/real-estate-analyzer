@@ -110,12 +110,6 @@ st.markdown("""
         color: #ffffff !important;
     }
     /* Global popover dropdown fix (Streamlit renders popovers outside sidebar) */
-    [data-baseweb="popover"] {
-        background: #1e2a3a !important;
-    }
-    [data-baseweb="popover"] > div {
-        background: #1e2a3a !important;
-    }
     [data-baseweb="popover"] [data-baseweb="menu"] {
         background: #1e2a3a !important;
     }
@@ -127,24 +121,10 @@ st.markdown("""
         background: rgba(255,107,53,0.2) !important;
         color: #ffffff !important;
     }
-    /* Popover search input — dark bg + visible text */
-    [data-baseweb="popover"] input,
-    [data-baseweb="popover"] [data-baseweb="input"],
-    [data-baseweb="popover"] [data-baseweb="input"] input {
+    [data-baseweb="popover"] input {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
         caret-color: #FF6B35 !important;
-        background: #253347 !important;
-        border-color: rgba(255,255,255,0.2) !important;
-    }
-    [data-baseweb="popover"] input::placeholder {
-        color: rgba(255,255,255,0.45) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.45) !important;
-    }
-    /* Also target the list wrapper inside popover */
-    [data-baseweb="popover"] ul,
-    [data-baseweb="popover"] [role="listbox"] {
-        background: #1e2a3a !important;
     }
     section[data-testid="stSidebar"] svg { color: #f0f0f0 !important; fill: #f0f0f0 !important; }
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #f0f0f0 !important; }
@@ -153,6 +133,26 @@ st.markdown("""
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h4 { color: #ffffff !important; }
     section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #ffffff !important; }
+    /* Nuclear override: ALL sidebar text white */
+    section[data-testid="stSidebar"] span,
+    section[data-testid="stSidebar"] p,
+    section[data-testid="stSidebar"] div,
+    section[data-testid="stSidebar"] label,
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] a,
+    section[data-testid="stSidebar"] li,
+    section[data-testid="stSidebar"] option,
+    section[data-testid="stSidebar"] [class*="css"] {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+    /* Global: any popover/dropdown search input */
+    [data-baseweb="popover"] *,
+    [data-baseweb="menu"] *,
+    ul[role="listbox"] * {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
 
     /* Feature Cards */
     .feat-card {
