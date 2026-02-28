@@ -77,13 +77,14 @@ st.markdown("""
         border-color: rgba(255,255,255,0.25) !important;
     }
     section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #ffffff !important; }
-    /* Selectbox search input: dark text on white bg */
+    /* Selectbox search input: force white bg + dark text in all themes */
     section[data-testid="stSidebar"] .stSelectbox input {
         color: #1a1a2e !important;
         -webkit-text-fill-color: #1a1a2e !important;
         caret-color: #FF6B35 !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
     }
-    /* Selectbox placeholder text */
     section[data-testid="stSidebar"] .stSelectbox input::placeholder {
         color: rgba(0,0,0,0.4) !important;
         -webkit-text-fill-color: rgba(0,0,0,0.4) !important;
@@ -135,6 +136,8 @@ st.markdown("""
         color: #1a1a2e !important;
         -webkit-text-fill-color: #1a1a2e !important;
         caret-color: #FF6B35 !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
     }
     [data-baseweb="popover"] input::placeholder {
         color: rgba(0,0,0,0.4) !important;
@@ -172,11 +175,14 @@ st.markdown("""
     section[data-testid="stSidebar"] a { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
     /* Selected value in sidebar selectbox */
     section[data-testid="stSidebar"] [data-baseweb="select"] span { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
-    /* ALL search/text inputs: dark text so it's visible on white bg */
+    /* ALL search/text inputs: force white bg + dark text in all themes */
     input[type="text"], input[aria-autocomplete], input[role="combobox"] {
         color: #1a1a2e !important;
         -webkit-text-fill-color: #1a1a2e !important;
         caret-color: #FF6B35 !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        border-radius: 6px;
     }
 
     /* Feature Cards */
