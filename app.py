@@ -230,6 +230,40 @@ with st.sidebar:
     st.caption("All 28 States + 8 Union Territories")
     st.divider()
 
+    # ── Location selectors (placed first so changes auto-navigate) ──
+    st.markdown("#### 🔍 Select Location")
+    all_states = get_all_states()
+    selected_state = st.selectbox(
+        "State / UT", all_states,
+        index=all_states.index("Maharashtra") if "Maharashtra" in all_states else 0,
+        label_visibility="collapsed",
+        key="sel_state",
+    )
+    cities = get_cities_in_state(selected_state, df)
+    selected_city = st.selectbox("City / Town", cities, label_visibility="collapsed", key="sel_city")
+    selected_location = f"{selected_city}, {selected_state}"
+
+    available_areas = get_areas_in_city(selected_city)
+    selected_area = None
+    if available_areas:
+        area_options = ["🏙️ City Overview (All Areas)"] + available_areas
+        area_choice = st.selectbox("Area / Locality", area_options, label_visibility="collapsed")
+        if area_choice != "🏙️ City Overview (All Areas)":
+            selected_area = area_choice
+    else:
+        st.caption("ℹ️ Area details not available for this city.")
+
+    # Detect if user changed location → auto-navigate to Location Overview
+    _prev_state = st.session_state.get("_prev_state", selected_state)
+    _prev_city = st.session_state.get("_prev_city", selected_city)
+    location_changed = (_prev_state != selected_state) or (_prev_city != selected_city)
+    st.session_state["_prev_state"] = selected_state
+    st.session_state["_prev_city"] = selected_city
+
+    nav_default = 1 if location_changed else 0  # 1 = Location Overview
+
+    st.divider()
+
     page = option_menu(
         menu_title=None,
         options=[
@@ -252,7 +286,8 @@ with st.sidebar:
             "shield-fill-check",
             "exclamation-triangle-fill",
         ],
-        default_index=0,
+        default_index=nav_default,
+        key=f"nav_menu_{selected_state}_{selected_city}" if location_changed else "nav_menu",
         styles={
             "container": {"padding": "0!important", "background-color": "transparent"},
             "icon": {"color": "#FF6B35", "font-size": "16px"},
@@ -267,29 +302,6 @@ with st.sidebar:
             },
         },
     )
-
-    st.divider()
-
-    st.markdown("#### 🔍 Select Location")
-    all_states = get_all_states()
-    selected_state = st.selectbox(
-        "State / UT", all_states,
-        index=all_states.index("Maharashtra") if "Maharashtra" in all_states else 0,
-        label_visibility="collapsed",
-    )
-    cities = get_cities_in_state(selected_state, df)
-    selected_city = st.selectbox("City / Town", cities, label_visibility="collapsed")
-    selected_location = f"{selected_city}, {selected_state}"
-
-    available_areas = get_areas_in_city(selected_city)
-    selected_area = None
-    if available_areas:
-        area_options = ["🏙️ City Overview (All Areas)"] + available_areas
-        area_choice = st.selectbox("Area / Locality", area_options, label_visibility="collapsed")
-        if area_choice != "🏙️ City Overview (All Areas)":
-            selected_area = area_choice
-    else:
-        st.caption("ℹ️ Area details not available for this city.")
 
     # ─── Live Weather ───
     st.divider()
