@@ -455,8 +455,8 @@ with st.sidebar:
             "icon": {"color": "#FF6B35", "font-size": "16px"},
             "nav-link": {
                 "font-size": "14px", "text-align": "left", "margin": "2px 0",
-                "padding": "8px 12px", "color": "#2c3e50", "border-radius": "8px",
-                "--hover-color": "rgba(255,107,53,0.08)",
+                "padding": "8px 12px", "color": "#f0f0f0", "border-radius": "8px",
+                "--hover-color": "rgba(255,107,53,0.12)",
             },
             "nav-link-selected": {
                 "background-color": "rgba(255,107,53,0.12)",
