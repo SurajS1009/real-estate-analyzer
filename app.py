@@ -50,7 +50,7 @@ st.markdown("""
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         margin-bottom: 0.4rem;
     }
-    .sub-header { font-size: 1.05rem; color: #c5cdd7; margin-bottom: 0; font-weight: 400; }
+    .sub-header { font-size: 1.05rem; color: #5f6b7a; margin-bottom: 0; font-weight: 400; }
     .hero-badge {
         display: inline-block; margin-top: 1rem;
         background: rgba(255,107,53,0.1); color: #FF6B35; font-size: 0.78rem; font-weight: 600;
@@ -187,8 +187,8 @@ st.markdown("""
 
     /* Feature Cards */
     .feat-card {
-        background: rgba(255,255,255,0.035); padding: 1.5rem 1.2rem 1.3rem; border-radius: 16px;
-        border: 1px solid rgba(255,255,255,0.07); text-align: center;
+        background: rgba(0,0,0,0.015); padding: 1.5rem 1.2rem 1.3rem; border-radius: 16px;
+        border: 1px solid rgba(0,0,0,0.07); text-align: center;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .feat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(255,107,53,0.12); }
@@ -197,12 +197,12 @@ st.markdown("""
         display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
     }
     .feat-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.35rem; color: #FF6B35; letter-spacing: -0.2px; }
-    .feat-desc  { font-size: 0.82rem; color: #c5cdd7; line-height: 1.45; }
+    .feat-desc  { font-size: 0.82rem; color: #5f6b7a; line-height: 1.45; }
 
     /* Step Cards */
     .step-card {
-        background: rgba(255,255,255,0.03); padding: 1.6rem; border-radius: 16px;
-        border: 1px solid rgba(255,255,255,0.06); text-align: left;
+        background: rgba(0,0,0,0.015); padding: 1.6rem; border-radius: 16px;
+        border: 1px solid rgba(0,0,0,0.06); text-align: left;
         transition: transform 0.2s ease;
     }
     .step-card:hover { transform: translateY(-3px); }
@@ -211,23 +211,23 @@ st.markdown("""
         width: 34px; height: 34px; border-radius: 10px; font-weight: 800; font-size: 0.9rem;
         margin-right: 0.7rem; flex-shrink: 0;
     }
-    .step-title { font-weight: 600; font-size: 1rem; color: #ffffff; }
-    .step-desc  { margin-top: 0.7rem; color: #c5cdd7; font-size: 0.88rem; line-height: 1.5; }
+    .step-title { font-weight: 600; font-size: 1rem; color: #2d3748; }
+    .step-desc  { margin-top: 0.7rem; color: #5f6b7a; font-size: 0.88rem; line-height: 1.5; }
 
     /* Section Headers */
     .section-hdr {
         font-size: 1.3rem; font-weight: 700; color: #FF6B35; margin-bottom: 0.3rem; letter-spacing: -0.3px;
     }
-    .section-sub { font-size: 0.88rem; color: #b0b8c4; margin-bottom: 1.4rem; }
+    .section-sub { font-size: 0.88rem; color: #6b7785; margin-bottom: 1.4rem; }
 
     /* Stat Pills */
     .stat-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 1.2rem 0 0.5rem; }
     .stat-pill {
-        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.08);
         border-radius: 12px; padding: 0.7rem 1.3rem; text-align: center; min-width: 150px;
     }
     .stat-val  { font-size: 1.4rem; font-weight: 800; color: #FF6B35; }
-    .stat-label { font-size: 0.78rem; color: #b0b8c4; margin-top: 0.15rem; font-weight: 500; }
+    .stat-label { font-size: 0.78rem; color: #6b7785; margin-top: 0.15rem; font-weight: 500; }
 
     .stMetric { background: rgba(255,107,53,0.05); border-radius: 12px; padding: 0.8rem; }
 
