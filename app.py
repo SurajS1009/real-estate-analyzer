@@ -77,19 +77,16 @@ st.markdown("""
         border-color: rgba(255,255,255,0.25) !important;
     }
     section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] * { color: #ffffff !important; }
-    /* Selectbox input & search field */
-    section[data-testid="stSidebar"] .stSelectbox input,
-    section[data-testid="stSidebar"] .stSelectbox [data-baseweb="input"] input,
-    section[data-testid="stSidebar"] .stSelectbox [role="combobox"] input {
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+    /* Selectbox search input: dark text on white bg */
+    section[data-testid="stSidebar"] .stSelectbox input {
+        color: #1a1a2e !important;
+        -webkit-text-fill-color: #1a1a2e !important;
         caret-color: #FF6B35 !important;
-        background: transparent !important;
     }
     /* Selectbox placeholder text */
     section[data-testid="stSidebar"] .stSelectbox input::placeholder {
-        color: rgba(255,255,255,0.5) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.5) !important;
+        color: rgba(0,0,0,0.4) !important;
+        -webkit-text-fill-color: rgba(0,0,0,0.4) !important;
     }
     /* Dropdown menu list */
     section[data-testid="stSidebar"] .stSelectbox [data-baseweb="menu"],
@@ -133,26 +130,15 @@ st.markdown("""
         color: #ffffff !important;
     }
     [data-baseweb="popover"] input,
-    [data-baseweb="popover"] [data-baseweb="input"],
     [data-baseweb="popover"] [data-baseweb="input"] input,
-    [data-baseweb="popover"] [role="combobox"],
     [data-baseweb="popover"] [role="combobox"] input {
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+        color: #1a1a2e !important;
+        -webkit-text-fill-color: #1a1a2e !important;
         caret-color: #FF6B35 !important;
-        background: #263248 !important;
-        background-color: #263248 !important;
     }
-    [data-baseweb="popover"] input::placeholder,
-    [data-baseweb="popover"] [data-baseweb="input"] input::placeholder {
-        color: rgba(255,255,255,0.5) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.5) !important;
-    }
-    /* "No results" message in popover */
-    [data-baseweb="popover"] [data-baseweb="menu"] div,
-    [data-baseweb="popover"] [role="listbox"] ~ div {
-        color: rgba(255,255,255,0.6) !important;
-        -webkit-text-fill-color: rgba(255,255,255,0.6) !important;
+    [data-baseweb="popover"] input::placeholder {
+        color: rgba(0,0,0,0.4) !important;
+        -webkit-text-fill-color: rgba(0,0,0,0.4) !important;
     }
     /* Sidebar-scoped listbox */
     section[data-testid="stSidebar"] ul[role="listbox"] {
@@ -178,13 +164,20 @@ st.markdown("""
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
     section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h4 { color: #ffffff !important; }
     section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p { color: #ffffff !important; }
-    /* Sidebar-only text override */
+    /* Sidebar-only text override (excludes inputs — they may open in white-bg popovers) */
     section[data-testid="stSidebar"] span,
     section[data-testid="stSidebar"] p,
     section[data-testid="stSidebar"] div,
     section[data-testid="stSidebar"] label,
     section[data-testid="stSidebar"] a { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
-    section[data-testid="stSidebar"] input { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    /* Selected value in sidebar selectbox */
+    section[data-testid="stSidebar"] [data-baseweb="select"] span { color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; }
+    /* ALL search/text inputs: dark text so it's visible on white bg */
+    input[type="text"], input[aria-autocomplete], input[role="combobox"] {
+        color: #1a1a2e !important;
+        -webkit-text-fill-color: #1a1a2e !important;
+        caret-color: #FF6B35 !important;
+    }
 
     /* Feature Cards */
     .feat-card {
